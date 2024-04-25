@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<div class="sidebar">
+    <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
+        <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
+    </a>
+    <a href="{% url 'edytuj_nieruchomosc' %}" class="button-1">
+        <button><i class="fas fa-edit"></i> Edytuj</button>
+    </a>
+    <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
+        <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
+    </a>
+    <a href="{% url 'lista_najemcow' %}" class="button-3">
+        <button><i class="fas fa-users"></i> Najemcy</button>
+    </a>
+    <a href="{% url 'kalendarz_najmow' %}" class="button-4">
+        <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
+    </a>
+    <a href="{% url 'lista_oplat' %}" class="button-5">
+        <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
+    </a>
+    <a href="{% url 'raporty' %}" class="button-6">
+        <button><i class="fas fa-file-alt"></i> Raporty</button>
+    </a>
+    <a href="{% url 'ustawienia' %}"class="button-7">
+        <button><i class="fas fa-cogs"></i> Ustawienia</button>
+    </a>
+</div>
+
+
+<div class="topnav">
+            <input type="text" placeholder="Search..">
+            <button>Search</button>
+        </div>
+<div class="content">
+    <div class="sort-filtr">
+        <div class="filtr">
+            <i class="fas fa-sort"></i> Sortowanie
+            <select name="sort-options" id="sort-options">
+                <option value="" disabled selected hidden>Sortuj według:</option>
+                <option value="lowest-price">Najniższej ceny</option>
+                <option value="highest-price">Najwyższej ceny</option>
+            </select>
+              <p></p>
+        </div>
+        <div class="filtr" style="margin-left: 1200px">
+            <i class="fas fa-filter"></i> Filtruj
+            <div id="filter-options" class="filter-options">
+                <label for="area">Powierzchnia:</label>
+                <input type="number" id="area" name="area" min="0" placeholder="Min">
+                <input type="number" id="area" name="area" min="0" placeholder="Max">
+
+                <label for="rooms">Liczba pokoi:</label>
+                <input type="number" id="rooms" name="rooms" min="0" placeholder="Min">
+                <input type="number" id="rooms" name="rooms" min="0" placeholder="Max">
+
+                <label for="price">Cena:</label>
+                <input type="number" id="price" name="price" min="0" placeholder="Min">
+                <input type="number" id="price" name="price" min="0" placeholder="Max">
+
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="">-- Wybierz status --</option>
+                    <option value="available">Dostępne</option>
+                    <option value="rented">Wynajęte</option>
+                </select>
+
+                <label for="type">Typ:</label>
+                <select id="type" name="type">
+                    <option value="">-- Wybierz typ --</option>
+                    <option value="house">Dom</option>
+                    <option value="apartment">Mieszkanie</option>
+                </select>
+
+                <button onclick="applyFilter()">Filtruj</button>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+</div>
+        <div class="nieruchomosci-lista">
+            {% for nieruchomosc in nieruchomosci %}
+                <div class="nieruchomosc">
+                    {% if nieruchomosc.zdjecie_set.all %}
+                        {% with zdjecie=nieruchomosc.zdjecie_set.first %}
+                            <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}">
+                        {% endwith %}
+                    {% else %}
+                    {% endif %}
+                    <div class="nieruchomosc-info">
+                        <h3>{{ nieruchomosc.Typ_nieruchomosci }}</h3>
+                        <p>Status: {{ nieruchomosc.Status }}</p>
+                        <p>{{ nieruchomosc.ID_adresu }}</p>
+                        <p>Cena: {{ nieruchomosc.Cena }} PLN</p>
+                        <p>Powierzchnia: {{ nieruchomosc.Powierzchnia }} m2</p>
+                        <p>Liczba pokoi: {{ nieruchomosc.Liczba_pokoi }}</p>
+                        <!-- ... inne dane ... -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+body {
+    font-family: Arial, sans-serif; /* Wybierz czcionkę */
+    margin: 0; /* Usuń marginesy */
+    padding: 0; /* Usuń wewnętrzne odstępy */
+    background-color: #151a21;
+}
+.nieruchomosci-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-right: 2%;
+}
+
+.nieruchomosc {
+    border: 1px solid #ccc; /* Ramka wokół nieruchomości */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    overflow: hidden; /* Ukryj zawartość, która wychodzi poza ramkę */
+}
+.nieruchomosc:hover {
+    border: 3px solid green; /* Ramka wokół nieruchomości */
+}
+
+.nieruchomosc img {
+    width: 100%; /* Rozciągnij zdjęcie na całą szerokość */
+    height: 200px; /* Ustaw wysokość zdjęcia */
+    object-fit: cover; /* Dopasuj zdjęcie do ramki, zachowując proporcje */
+}
+
+.nieruchomosc-info {
+    padding: 10px; /* Odstęp wewnątrz elementu z informacjami */
+    color: blueviolet;
+    float: left;
+}
+.container {
+    display: flex;
+    background-color: #8d9db3; /* Kolor tła między kolumnami */
+}
+
+.column {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.sidebar {
+    background-color: #151a21;
+    float: left;
+    width: 15%;
+    height: 100%;
+    text-align: center;
+}
+.container {
+    float: left;
+    width: 70%; /* zmniejszenie szerokości kontenera */
+    margin-right: 10%; /* zwiększenie marginesu z prawej strony */
+}
+
+
+
+.sidebar a {
+    display: inline-block; /* Zmiana z flex na inline-block */
+    margin: 1px; /* Usunięcie odstępów między przyciskami */
+    text-decoration: none;
+    width: 100%;
+}
+
+.sidebar button i {
+    vertical-align: middle;
+}
+
+.sidebar .button-1 {
+    border-left: 5px solid red;
+}
+
+.sidebar .button-2 {
+    border-left: 5px solid blue;
+}
+
+.sidebar .button-3 {
+    border-left: 5px solid green;
+}
+
+.sidebar .button-4 {
+    border-left: 5px solid yellow;
+}
+
+.sidebar .button-5 {
+    border-left: 5px solid orange;
+}
+
+.sidebar .button-6 {
+    border-left: 5px solid purple;
+}
+
+.sidebar .button-7 {
+    border-left: 5px solid pink;
+}
+
+.sidebar button {
+    background-color: #151a21;
+    padding: 0;
+    color: #5b7ba3;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 95%;
+    height: 80px;
+    margin: 0;
+    border: none; /* Usunięcie domyślnego obramowania */
+    box-sizing: border-box; /* Dodanie właściwości box-sizing */
+}
+
+
+.sidebar button:hover {
+    background-color: #ddd;
+}
+
+.topnav {
+    margin-bottom: 10px;
+    background-color: #151a21;
+}
+.topnav input
+{
+    padding: 5px 5px 5px 10px;
+     border: 5px solid #6438b0;
+     width: 500px;
+     height: 30px;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.topnav button {
+    padding: 5px;
+    border: 5px solid #6438b0;
+    font-size: large;
+    transition: 0.5s linear;
+    height: 50px;
+}
+.topnav button:hover {
+  color: #000;
+  transition: 0.5s linear;
+  cursor: pointer;
+}
+/* Styl dla filtra */
+/* Styl dla filtra */
+/* Styl dla filtra */
+.filtr {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+    font-size: 35px; /* Zmniejszenie rozmiaru czcionki */
+    margin-right: 20px; /* Dodanie odstępu między ikonami */
+
+}
+
+/* Styl dla opcji sortowania */
+#sort-options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    border: none;
+    left: 0; /* Ustawienie listy na lewo */
+    top: 100%; /* Przesunięcie listy poniżej ikony */
+}
+
+/* Pokazywanie opcji sortowania po najechaniu na ikonę sortowania */
+.filtr:nth-child(1):hover #sort-options {
+    display: block;
+}
+
+/* Styl dla opcji filtracji */
+.filter-options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 200px; /* Dostosowanie szerokości panelu filtracji */
+    padding: 10px; /* Dostosowanie wewnętrznego odstępu */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0; /* Ustawienie panelu na lewo */
+    top: 100%; /* Przesunięcie panelu poniżej ikony */
+}
+
+/* Pokazywanie panelu filtracji po najechaniu na ikonę filtracji */
+.filtr:nth-child(2):hover .filter-options {
+    display: block;
+}
+
+
+
+
+
+
+
