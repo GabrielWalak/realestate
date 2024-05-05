@@ -1,11 +1,24 @@
 from django.shortcuts import render
 from .models import Nieruchomosc, Najemca, UmowaNajmu, Oplata
 from .forms import ZdjecieForm, NieruchomoscForm
+from .filters import NieruchomosciFilter, AdresSearchFilter, SortFilter
 
 
 def lista_nieruchomosci(request):
-    nieruchomosci = Nieruchomosc.objects.select_related('ID_adresu').prefetch_related('zdjecie_set').order_by('-Cena')  # Pobierz wszystkie nieruchomości, sortuj wg ceny
-    kontekst = {'nieruchomosci': nieruchomosci}
+    nieruchomosci_list = Nieruchomosc.objects.all()
+    adres_search_filter = AdresSearchFilter(request.GET, queryset=nieruchomosci_list)
+    nieruchomosci_filter = NieruchomosciFilter(request.GET, queryset=adres_search_filter.qs)
+    sort_filter = SortFilter(request.GET, queryset=nieruchomosci_filter.qs)
+
+    # Use the sorted queryset
+    nieruchomosci = sort_filter.qs
+
+    kontekst = {
+        'nieruchomosci': nieruchomosci,
+        'nieruchomosci_filter': nieruchomosci_filter,
+        'adres_search_filter': adres_search_filter,
+        'sort_filter': sort_filter
+    }
     return render(request, 'lista_nieruchomosci.html', kontekst)  # Wyświetl listę
 
 

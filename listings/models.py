@@ -15,14 +15,27 @@ class Adres(models.Model):
         return f"{self.Ulica} {self.Numer_domu}, {self.Kod_pocztowy} {self.Miasto}"
 
 class Nieruchomosc(models.Model):
+    STATUS_CHOICES = [
+        ('Na Sprzedaż', 'Na Sprzedaż'),
+        ('Wynajęte', 'Wynajęte'),
+        ('Do wynajęcia', 'Do wynajęcia'),
+        ('Do remontu', 'Do remontu')
+        # ... add more choices as needed ...
+    ]
+    TYP_CHOICES = [
+        ('Dom', 'Dom'),
+        ('Mieszkanie', 'Mieszkanie'),
+        # ... add more choices as needed ...
+    ]
+    Status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     ID_nieruchomosci = models.AutoField(primary_key=True)
     ID_adresu = models.ForeignKey(Adres, on_delete=models.CASCADE, db_column='ID_adresu')
     Powierzchnia = models.DecimalField(max_digits=10, decimal_places=2)
     Liczba_pokoi = models.IntegerField()
     Cena = models.DecimalField(max_digits=10, decimal_places=2)
-    Status = models.CharField(max_length=50)
-    Typ_nieruchomosci = models.CharField(max_length=50)
+    Typ_nieruchomosci = models.CharField(max_length=50, choices=TYP_CHOICES)
     Opis = models.TextField(blank=True)  # Opcjonalne
+
 
     class Meta:
         db_table='Nieruchomosci'
