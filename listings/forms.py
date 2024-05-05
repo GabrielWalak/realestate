@@ -11,3 +11,10 @@ class NieruchomoscForm(forms.ModelForm):
     class Meta:
         model = Nieruchomosc
         fields = '__all__'  # Lub określ pola, które chcesz uwzględnić
+
+class EdytujNieruchomoscForm(forms.Form):
+    typ = forms.CharField(max_length=100, required=False)
+    status = forms.CharField(max_length=100, required=False)
+    cena = forms.FloatField(required=False)
+    powierzchnia = forms.FloatField(required=False)
+    liczba_pokoi = forms.IntegerField(required=False)

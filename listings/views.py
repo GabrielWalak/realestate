@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Nieruchomosc, Najemca, UmowaNajmu, Oplata
-from .forms import ZdjecieForm, NieruchomoscForm
+from .forms import ZdjecieForm, NieruchomoscForm, EdytujNieruchomoscForm
 from .filters import NieruchomosciFilter, AdresSearchFilter, SortFilter
 
 
@@ -22,10 +22,10 @@ def lista_nieruchomosci(request):
     return render(request, 'lista_nieruchomosci.html', kontekst)  # Wyświetl listę
 
 
-def edytuj_nieruchomosc(request):
-    nieruchomosc = Nieruchomosc.objects.all()
-
-    return render(request, 'lista_nieruchomosci.html', {'nieruchomosc': nieruchomosc})
+def edytuj_nieruchomosc(request, nieruchomosc_ID):
+    nieruchomosc = Nieruchomosc.objects.filter(ID_nieruchomosci=nieruchomosc_ID)
+    print(request, nieruchomosc_ID)
+    return render(request, 'edytuj_nieruchomosc.html', {'nieruchomosc': nieruchomosc[0]})
 
 def dodaj_nieruchomosc(request):
     if request.method == 'POST':
@@ -79,3 +79,19 @@ def dodaj_zdjecie(request, nieruchomosc_id):
     else:
         form = ZdjecieForm()
     return render(request, 'dodaj_zdjecie.html', {'form': form, 'nieruchomosc': nieruchomosc})
+
+
+def zmien_nieruchomosc(request, nieruchomosc_ID):
+    nieruchomosc = Nieruchomosc.objects.filter(ID_nieruchomosci=nieruchomosc_ID)[0]
+
+    print(nieruchomosc_ID, nieruchomosc)
+    if request.method == "POST":
+        form = EdytujNieruchomoscForm(request.POST)
+        if form.is_valid():
+            nieruchomosc.Typ_nieruchomosci = form.cleaned_data["typ"]
+            nieruchomosc.Status = form.cleaned_data["status"]
+            nieruchomosc.Cena = form.cleaned_data["cena"]
+            nieruchomosc.Powierzchnia = form.cleaned_data["powierzchnia"]
+            nieruchomosc.Liczba_pokoi = form.cleaned_data["liczba_pokoi"]
+            nieruchomosc.save()
+            return redirect("lista_nieruchomosci")

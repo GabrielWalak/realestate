@@ -7,12 +7,13 @@ urlpatterns = [
     path('', views.lista_nieruchomosci, name='lista_nieruchomosci'),
     path('nieruchomosci/dodaj/', views.dodaj_nieruchomosc, name='dodaj_nieruchomosc'),
     path('nieruchomosci/<int:nieruchomosc_id>/dodaj_zdjecie/', views.dodaj_zdjecie, name='dodaj_zdjecie'),
-    path('nieruchomosci/nieruchomosc_id/edytuj/', views.edytuj_nieruchomosc, name='edytuj_nieruchomosc'),
+    path('nieruchomosci/<int:nieruchomosc_ID>/edytuj/', views.edytuj_nieruchomosc, name='edytuj_nieruchomosc'),
     path('najemcy/', views.lista_najemcow, name='lista_najemcow'),
     path('kalendarz/', views.kalendarz_najmow, name='kalendarz_najmow'),
     path('oplaty/', views.lista_oplat, name='lista_oplat'),
     path('raporty/', views.raporty, name='raporty'),
     path('ustawienia/', views.ustawienia, name='ustawienia'),
+    path('nieruchomosci/<int:nieruchomosc_ID>/edytuj/zmien_nieruchomosc', views.zmien_nieruchomosc, name='zmien_nieruchomosc')
 ]
 
 if settings.DEBUG:
