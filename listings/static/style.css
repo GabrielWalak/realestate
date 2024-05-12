@@ -81,6 +81,16 @@ body {
     width: 100%;
 }
 
+.light .sidebar {
+    background-color: #fff;
+    color: #000;
+}
+
+.dark .sidebar {
+    background-color: #151a21;
+    color: #151a21;
+}
+
 .sidebar button i {
     vertical-align: middle;
 }
@@ -127,6 +137,18 @@ body {
     box-sizing: border-box; /* Dodanie właściwości box-sizing */
 }
 
+.light .sidebar button {
+    background-color: #fff;
+    color: #5b7ba3;
+}
+
+.dark .sidebar button {
+    background-color: #151a21;
+    color: #5b7ba3;
+}
+
+
+
 
 .sidebar button:hover {
     background-color: #ddd;
@@ -136,6 +158,16 @@ body {
     margin-bottom: 10px;
     background-color: #151a21;
 }
+
+.light .topnav {
+    background-color: #fff;
+}
+
+.dark .topnav {
+    background-color: #151a21;
+}
+
+
 .topnav input
 {
     padding: 5px 5px 5px 10px;
@@ -229,6 +261,25 @@ select#sort-options {
     height: 80%;
 }
 
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.faq, .contact {
+    width: 45%;
+    padding: 20px;
+    background-color: #ddd; /* Dostosuj do motywu */
+    border-radius: 8px;
+}
+
+/* Stylizacja powiadomień, FAQ i kontaktu */
+.notifications, .settings, .faq, .contact {
+    margin-bottom: 20px;
+}
+
+
 .form-container,
 .image-upload-container {
     margin: 40px 10px 20px 10px;
@@ -240,6 +291,7 @@ select#sort-options {
     border-radius: 10px;
     transition: transform 0.3s;
 }
+
 
 .form-container:hover,
 .image-upload-container:hover {
@@ -281,6 +333,9 @@ select#sort-options {
     margin: 10px 0;
     background-color: #4CAF50;
 }
+
+
+
 
 #id_Opis {
     width: calc(100% - 20px);
@@ -362,6 +417,27 @@ select#sort-options {
     display: block;
 }
 
+body.light {
+    background-color: #fff; /* Jasne tło */
+    color: #000; /* Ciemny tekst */
+}
+
+body.dark {
+    background-color: #151a21; /* Ciemne tło */
+    color: #fff; /* Jasny tekst */
+}
+
+.small-font {
+    font-size: 12px !important;
+}
+
+.medium-font {
+    font-size: 16px !important;
+}
+
+.large-font {
+    font-size: 20px !important;
+}
 
 
 
