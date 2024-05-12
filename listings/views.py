@@ -176,8 +176,9 @@ from django.shortcuts import render
 #from .models import Oplata, Najemca
 
 def lista_oplat(request):
+    theme = request.session.get('theme', 'dark')
     oplaty = Oplata.objects.select_related('ID_umowy__ID_najemcy').all()  # Zakładając, że istnieje relacja ID_umowy do UmowaNajmu i UmowaNajmu ma relację ID_najemcy do Najemca
-    return render(request, 'lista_oplat.html', {'oplaty': oplaty})
+    return render(request, 'lista_oplat.html', {'oplaty': oplaty,'theme': theme})
 
 
 
