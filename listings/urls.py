@@ -15,7 +15,9 @@ urlpatterns = [
     path('ustawienia/', views.ustawienia, name='ustawienia'),
     path('nieruchomosci/<int:nieruchomosc_ID>/edytuj/zmien_nieruchomosc', views.zmien_nieruchomosc, name='zmien_nieruchomosc'),
     path('zmien_tlo/', views.zmien_tlo, name='zmien_tlo'),
-    path('zmien-czcionke/', views.zmien_czcionke, name='zmien_czcionke')
+    path('zmien-czcionke/', views.zmien_czcionke, name='zmien_czcionke'),
+    path('api/najmy/', views.get_najmy, name='api-najmy'),
+    path('oplaty/', views.lista_oplat, name='lista_oplat')
 ]
 
 if settings.DEBUG:

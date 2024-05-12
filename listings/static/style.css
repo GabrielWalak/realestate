@@ -439,6 +439,43 @@ body.dark {
     font-size: 20px !important;
 }
 
+/* Form container styling for horizontal layout */
+.form-container1 form {
+    display: flex;
+    align-items: center; /* Keep items aligned at the center vertically */
+    justify-content: space-between; /* Evenly space out the form groups */
+    flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
+    width: 100%; /* Use the full width to accommodate all elements */
+}
+
+/* Styling for individual form groups */
+.form-container1 div {
+    display: flex;
+    align-items: center; /* Align items in the middle vertically */
+    margin-right: 20px; /* Space between each group */
+}
+
+/* Enhancements for select elements */
+.form-container1 select {
+    width: 350px; /* Increase the width of dropdowns */
+    margin-left: 10px; /* Space between label and dropdown */
+    padding: 6px 10px; /* Adjust padding to reduce vertical height */
+    font-size: 1.0em; /* Uniform font size */
+}
+
+/* Button specific styling */
+.form-container1 button {
+    padding: 6px 15px; /* Adjust padding to reduce vertical height */
+    font-size: 0.95em; /* Slightly smaller font size for the button */
+    font-weight: bold; /* Bold font for visibility */
+    cursor: pointer; /* Indicates it's clickable */
+}
+
+/* Adjustments for label to reduce vertical spacing */
+.form-container1 label {
+    margin-bottom: 0; /* Remove any bottom margin */
+    white-space: nowrap; /* Prevent labels from wrapping */
+}
 
 
 

@@ -156,6 +156,29 @@ def generate_report(request):
 
     return render(request, 'raporty.html', {'image': uri})
 
+#Tymek 11.05.2024 kalendarz
+
+from django.http import JsonResponse
+from .models import UmowaNajmu
+
+def get_najmy(request):
+    najmy = UmowaNajmu.objects.all()
+    data = [{
+        'title': f"Najem od {najem.ID_najemcy.Imie} {najem.ID_najemcy.Nazwisko}",
+        'start': najem.Data_rozpoczecia.strftime('%Y-%m-%d'),
+        'end': najem.Data_zakonczenia.strftime('%Y-%m-%d')
+    } for najem in najmy]
+    return JsonResponse(data, safe=False)
+
+#Tymek tego samego dnia, lista oplat
+
+from django.shortcuts import render
+#from .models import Oplata, Najemca
+
+def lista_oplat(request):
+    oplaty = Oplata.objects.select_related('ID_umowy__ID_najemcy').all()  # Zakładając, że istnieje relacja ID_umowy do UmowaNajmu i UmowaNajmu ma relację ID_najemcy do Najemca
+    return render(request, 'lista_oplat.html', {'oplaty': oplaty})
+
 
 
 
