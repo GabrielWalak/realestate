@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a660fa-54e0-41a8-a876-806baea1c882" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a505a3e6-8ca6-4d63-b71b-868bfc37dbe2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a505a3e6-8ca6-4d63-b71b-868bfc37dbe2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/realestate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/realestate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/listings/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lista_nieruchomosci.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lista_nieruchomosci.html" afterDir="false" />
-    </list>
+    <list default="true" id="37a660fa-54e0-41a8-a876-806baea1c882" name="Changes" comment="sorting" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +15,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "GabrielWalak"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="02518e19-19e6-4059-8464-4792ad1a8514" />
+        <option name="url" value="https://github.com/GabrielWalak/realestate.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -102,10 +107,24 @@
       <workItem from="1715424563929" duration="211000" />
       <workItem from="1715781325387" duration="306000" />
       <workItem from="1715781742401" duration="293000" />
+      <workItem from="1715982246535" duration="80000" />
     </task>
+    <task id="LOCAL-00001" summary="sorting">
+      <option name="closed" value="true" />
+      <created>1715982301433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715982301433</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="sorting" />
+    <option name="LAST_COMMIT_MESSAGE" value="sorting" />
   </component>
 </project>
