@@ -192,30 +192,61 @@ select#sort-options {
 }
 
 
-/* Pokazywanie opcji sortowania po najechaniu na ikonę sortowania */
-.filtr:nth-child(1):hover #sort-options {
+/* Pokazywanie panelu filtracji po najechaniu na napis lub ikonę "Filtruj" */
+.filtr:hover .filter-options {
     display: block;
 }
 
+/* Wyśrodkowanie tekstu "Filtruj" w prawej stronie */
+.filtr {
+    margin-left: 89%;
+    text-align: right;
+}
+
+/* Style for panelu filtracji */
 .filter-options {
     font-size: small;
     color: black;
     display: none;
     position: absolute;
-    right: 40%;
+    right: 0; /* Wycentrowanie panelu filtracji do prawej krawędzi */
     background-color: #f9f9f9;
     width: 170px; /* Dostosowanie szerokości panelu filtracji */
     padding: 10px; /* Dostosowanie wewnętrznego odstępu */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    left: 0; /* Ustawienie panelu na lewo */
-    top: 100%; /* Przesunięcie panelu poniżej ikony */
     text-align: left;
 }
 
-/* Pokazywanie panelu filtracji po najechaniu na ikonę filtracji */
-.filtr:nth-child(2):hover .filter-options {
-    display: block;
+/* Style dla etykiet */
+.filter-options label {
+    display: block; /* Etykiety na własnej linii */
+    margin-bottom: 5px; /* Dodanie odstępu między etykietą a polem wprowadzania */
+    font-weight: bold; /* Wyróżnienie etykiet */
+}
+
+/* Style dla pól wprowadzania i rozwijanych menu */
+.filter-options input[type="number"],
+.filter-options select {
+    width: 100%; /* Dostosowanie szerokości według potrzeb */
+    border: 1px solid #ccc;
+}
+
+/* Style dla przycisku submit */
+.filter-options button {
+    padding: 8px 15px;
+    background-color: #4CAF50; /* Kolor tła (przykładowy kolor) */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px; /* Dodanie odstępu z góry */
+}
+
+/* Style dla przycisku reset */
+.filter-options button[type="reset"] {
+    background-color: #f44336; /* Kolor tła (przykładowy kolor dla przycisku reset) */
+    float: right; /* Wyrównanie przycisku reset do prawej */
+    margin-left: 10px; /* Dodanie odstępu z lewej */
 }
 
 /* formularz dodawanie nieruchomosci
@@ -306,38 +337,7 @@ select#sort-options {
 
 
 
-/* Wyśrodkowanie tekstu "Filtruj" w prawej stronie */
-.filtr {
-    margin-left: 89%;
-    text-align: right;
-}
 
-/* Style for labels */
-.filter-options label {
-    display: block; /* Labels on their own line */
-    margin-bottom: 5px; /* Add space between label and input */
-    font-weight: bold; /* Make labels stand out */
-}
-
-/* Style for input fields and select menus */
-.filter-options input[type="number"],
-.filter-options select {
-    width: 100px; /* Adjust width as needed */
-    border: 1px solid #ccc;
-}
-
-/* Style for submit button */
-.filter-options button {
-    padding: 8px 15px;
-    background-color: #4CAF50; /* Example color */
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.filter-options button[type="reset"] { /* Target the reset button specifically */
-    background-color: #f44336; /* Example color for a red "clear" button */
-    float: right;
-}
 /* Wyśrodkowanie tekstu "Sortowanie" */
 .sort-filtr  {
     margin-right: 20px; /* Dodaj odstęp z prawej strony */
@@ -360,6 +360,45 @@ select#sort-options {
 
 .sort-filtr:hover #sort-options {
     display: block;
+}
+.sort-filtr #sort-button {
+    display: none;
+}
+
+.sort-filtr:hover #sort-button {
+    display: inline-block;
+}
+/* Style for sort label */
+.sort-label {
+    position: relative; /* Ustawienie pozycji względem rodzica */
+    cursor: pointer; /* Kursor wskazujący na element interaktywny */
+}
+
+/* Style for sort options */
+.sort-options {
+    display: none; /* Ukrycie sort options */
+    position: absolute; /* Ustawienie pozycji absolutnej */
+    top: 100%; /* Umieszczenie listy pod sort label */
+    left: 0; /* Wyrównanie do lewej krawędzi */
+    background-color: #f9f9f9; /* Kolor tła */
+    min-width: 200px; /* Minimalna szerokość */
+    min-height: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Cień */
+    z-index: 1; /* Nadanie najwyższej warstwy */
+    border: none; /* Brak obramowania */
+}
+
+/* Pokazywanie sort options */
+.sort-label.active .sort-options {
+    display: block; /* Pokazanie sort options */
+}
+
+/* Style for sort button */
+#sort-button {
+    position: absolute; /* Ustawienie pozycji absolutnej */
+    top: 0; /* Umieszczenie przycisku na górze */
+    right: 0; /* Wyrównanie do prawej krawędzi */
+    margin-top: 10px; /* Dodanie odstępu od sort options */
 }
 
 

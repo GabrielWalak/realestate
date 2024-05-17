@@ -41,24 +41,27 @@
     {% endfor %}
 </div>
         </div>
+
+
+
 <div class="content">
     <div class="sort-filtr">
-    
-        <i class="fas fa-sort"> {{ sort_filter.form.ordering.label }}</i>
-    <form method="get">
-    <select id="sort-options">
-        {% for value, label in sort_filter.form.fields.ordering.choices %}
-            <option value="{{ value }}">{{ label }}</option>
-        {% endfor %}
-    </select>
-</form>
+        <form method="get">
+            <span class="sort-label">
+                <i class="fas fa-sort"> Sortowanie</i>
+                <div id="sort-options" class="sort-options">
+                    {{ sort_filter.form.as_p }}
+                <button id="sort-button" type="submit">sortuj</button>
+                </div>
+            </span>
+        </form>
     </div>
+</div>
 
-
-
-       
+    
+    
+    
         <div class="filtr" >
-            
             <i class="fas fa-filter" style="margin-right: 10%;"> Filtruj</i>  
     <form method="get" class="filter-options">  
         {{ nieruchomosci_filter.form.as_p }} 
@@ -66,7 +69,6 @@
         <button type="reset">Wyczyść</button>
     </form>
      
-</div>
 </div>
 
 
