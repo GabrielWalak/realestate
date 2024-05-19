@@ -1,5 +1,3 @@
-<!-- własne style css zdefiniowane w tym pliku  
-dodatkowo korzystam z style.css-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +28,10 @@ dodatkowo korzystam z style.css-->
         <a href="{% url 'raporty' %}" class="button-6">
             <button><i class="fas fa-file-alt"></i> Raporty</button>
         </a>
-        <a href="{% url 'ustawienia' %}"class="button-7">
+        <a href="{% url 'ustawienia' %}" class="button-7">
             <button><i class="fas fa-cogs"></i> Ustawienia</button>
         </a>
     </div>
-
 
     <div class="main-content">
         {% for oplata in oplaty %}
@@ -42,6 +39,10 @@ dodatkowo korzystam z style.css-->
             <h3>{{ oplata.ID_umowy.ID_najemcy.Imie }} {{ oplata.ID_umowy.ID_najemcy.Nazwisko }}</h3>
             <p>Kwota: {{ oplata.Kwota }} PLN</p>
             <p>Data płatności: {{ oplata.Data_platnosci }}</p>
+            <form method="post" action="{% url 'usun_oplate' oplata.pk %}"><!--oplata.id-->
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Usuń</button>
+            </form>
         </div>
         {% endfor %}
     </div>
@@ -60,19 +61,25 @@ dodatkowo korzystam z style.css-->
         margin: 10px;
         box-shadow: 0 2px 5px rgba(244, 242, 242, 0.1);
         background-color: #1d242f;
-        color:white;
+        color: white;
     }
 
     .payment-tile h3, .payment-tile p {
-        color:white; /*dodatkowe zpaewnienie ze tekst jest bialy */
+        color: white; /*dodatkowe zapewnienie, że tekst jest biały */
+    }
+
+    .delete-button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #c0392b;
     }
     </style>
     
-    </body>
-    </html>
-
-    
-
-
 </body>
 </html>

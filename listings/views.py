@@ -158,20 +158,19 @@ def generate_report(request):
 
 #Tymek 11.05.2024 kalendarz
 
-from django.http import JsonResponse
-from .models import UmowaNajmu
+#from django.http import JsonResponse
+#from .models import UmowaNajmu
+#def get_najmy(request):
+#    najmy = UmowaNajmu.objects.all()
+#    data = [{
+#        'title': f"Najem od {najem.ID_najemcy.Imie} {najem.ID_najemcy.Nazwisko}",
+#        'start': najem.Data_rozpoczecia.strftime('%Y-%m-%d'),
+#        'end': najem.Data_zakonczenia.strftime('%Y-%m-%d')
+#   } for najem in najmy]
+#    return JsonResponse(data, safe=False)
 
-def get_najmy(request):
-    najmy = UmowaNajmu.objects.all()
-    data = [{
-        'title': f"Najem od {najem.ID_najemcy.Imie} {najem.ID_najemcy.Nazwisko}",
-        'start': najem.Data_rozpoczecia.strftime('%Y-%m-%d'),
-        'end': najem.Data_zakonczenia.strftime('%Y-%m-%d')
-    } for najem in najmy]
-    return JsonResponse(data, safe=False)
 
-#Tymek tego samego dnia, lista oplat
-
+#Tymek tego samego dnia(czyli 11.05.2024), lista oplat
 from django.shortcuts import render
 #from .models import Oplata, Najemca
 
@@ -180,6 +179,37 @@ def lista_oplat(request):
     oplaty = Oplata.objects.select_related('ID_umowy__ID_najemcy').all()  # Zakładając, że istnieje relacja ID_umowy do UmowaNajmu i UmowaNajmu ma relację ID_najemcy do Najemca
     return render(request, 'lista_oplat.html', {'oplaty': oplaty,'theme': theme})
 
+
+#Tymek, 19.05 modyfikacja kalendarza
+from django.http import JsonResponse
+from .models import UmowaNajmu
+
+def get_najmy(request):
+    najmy = UmowaNajmu.objects.all()
+    data = []
+    for najem in najmy:
+        data.append({
+            'title': f"Rozpoczęcie: {najem.ID_najemcy.Imie} {najem.ID_najemcy.Nazwisko}",
+            'start': najem.Data_rozpoczecia.strftime('%Y-%m-%d'),
+            'allDay': True
+        })
+        data.append({
+            'title': f"Zakończenie: {najem.ID_najemcy.Imie} {najem.ID_najemcy.Nazwisko}",
+            'start': najem.Data_zakonczenia.strftime('%Y-%m-%d'),
+            'allDay': True
+        })
+    return JsonResponse(data, safe=False)
+
+#Tymek, ciagle 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Oplata
+
+def usun_oplate(request, oplata_id):
+    oplata = get_object_or_404(Oplata, pk=oplata_id)
+    if request.method == 'POST':
+        oplata.delete()
+        return redirect('lista_oplat')
+    return render(request, 'lista_oplat.html')
 
 
 
