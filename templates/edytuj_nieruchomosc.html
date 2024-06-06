@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
+<body class="{{ theme }} {{ font_size }}-font">
 
 
 <div class="sidebar">
@@ -36,20 +36,29 @@
         <form action="zmien_nieruchomosc" method="post">
             {% csrf_token %}
             {{ form }}
-            <label for="typ">Typ nieruchomości: {{ nieruchomosc.Typ_nieruchomosci }} </label>
-            <input type="text" id="typ" name="typ" value={{ nieruchomosc.Typ_nieruchomosci }}><br><br>
-            <label for="status">Status: {{ nieruchomosc.Status }} </label>
-            <input type="text" id="status" name="status" value= {{ nieruchomosc.Status }}><br><br>
-            <label for="cena">Cena nieruchomości: {{ nieruchomosc.Cena }} </label>
-            <input type="text" id="cena" name="cena" value={{ nieruchomosc.Cena }}><br><br>
-            <label for="powierzchnia">Powierzchnia nieruchomości: {{ nieruchomosc.Powierzchnia }} </label>
-            <input type="text" id="powierzchnia" name="powierzchnia" value={{ nieruchomosc.Powierzchnia }}><br><br>
-            <label for="liczba_pokoi">Liczba pokoi: {{ nieruchomosc.Liczba_pokoi }} </label>
-            <input type="text" id="liczba_pokoi" name="liczba_pokoi" value= {{ nieruchomosc.Liczba_pokoi }}><br><br>
+            <label for="typ">Typ nieruchomości: </label>
+            <select id="typ" name="typ">
+                <option value="Dom" {% if nieruchomosc.Typ_nieruchomosci == "Dom" %}selected{% endif %}>Dom</option>
+                <option value="Mieszkanie" {% if nieruchomosc.Typ_nieruchomosci == "Mieszkanie" %}selected{% endif %}>Mieszkanie</option>
+            </select><br><br>
+            <label for="status">Status: </label>
+            <select id="status" name="status">
+                <option value="Na Sprzedaż" {% if nieruchomosc.Status == "Na Sprzedaż" %}selected{% endif %}>Na Sprzedaż</option>
+                <option value="Wynajęte" {% if nieruchomosc.Status == "Wynajęte" %}selected{% endif %}>Wynajęte</option>
+                <option value="Do wynajęcia" {% if nieruchomosc.Status == "Do wynajęcia" %}selected{% endif %}>Do wynajęcia</option>
+                <option value="Do remontu" {% if nieruchomosc.Status == "Do remontu" %}selected{% endif %}>Do remontu</option>
+            </select><br><br>
+            <label for="cena">Cena nieruchomości: </label>
+            <input type="text" id="cena" name="cena" value="{{ nieruchomosc.Cena }}"><br><br>
+            <label for="powierzchnia">Powierzchnia nieruchomości: </label>
+            <input type="text" id="powierzchnia" name="powierzchnia" value="{{ nieruchomosc.Powierzchnia }}"><br><br>
+            <label for="liczba_pokoi">Liczba pokoi: </label>
+            <input type="text" id="liczba_pokoi" name="liczba_pokoi" value="{{ nieruchomosc.Liczba_pokoi }}"><br><br>
             <p> Zmień dowolne z pól i kliknij Edytuj</p>
             <input type="submit" value="Edytuj">
-            </form>
+        </form>
     </div>
 </div>
+
 </body>
 </html>

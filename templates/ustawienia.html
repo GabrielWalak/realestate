@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ustawienia</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
+<body class="{{ theme }} {{ font_size }}-font">
+    <div class="sidebar">
+        <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
+            <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
+        </a>
+        <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
+            <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
+        </a>
+        <a href="{% url 'lista_najemcow' %}" class="button-3">
+            <button><i class="fas fa-users"></i> Najemcy</button>
+        </a>
+        <a href="{% url 'kalendarz_najmow' %}" class="button-4">
+            <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
+        </a>
+        <a href="{% url 'lista_oplat' %}" class="button-5">
+            <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
+        </a>
+        <a href="{% url 'raporty' %}" class="button-6">
+            <button><i class="fas fa-file-alt"></i> Raporty</button>
+        </a>
+        <a href="{% url 'ustawienia' %}" class="button-7">
+            <button><i class="fas fa-cogs"></i> Ustawienia</button>
+        </a>
+    </div>
 
+    <div class="content">
+        <div class="form-container">
+            <h2>Ustawienia</h2>
+            <form action="{% url 'zmien_tlo' %}" method="post">
+                {% csrf_token %}
+                <label for="theme">Wybierz motyw tła:</label>
+                <select name="theme" id="theme">
+                    <option value="dark" {% if theme == 'dark' %}selected{% endif %}>Ciemny</option>
+                    <option value="light" {% if theme == 'light' %}selected{% endif %}>Jasny</option>
+                </select>
+                <input type="submit" value="Zastosuj">
+            </form>
+            
+            <form action="{% url 'zmien_czcionke' %}" method="post">
+                {% csrf_token %}
+                <label for="font_size">Wybierz rozmiar czcionki:</label>
+                <select name="font_size" id="font_size">
+                    <option value="small" {% if font_size == 'small' %}selected{% endif %}>Mała</option>
+                    <option value="medium" {% if font_size == 'medium' %}selected{% endif %}>Średnia</option>
+                    <option value="large" {% if font_size == 'large' %}selected{% endif %}>Duża</option>
+                </select>
+                <input type="submit" value="Zastosuj">
+            </form>
+        </div>
+
+        <div class="content">
+            <div class="form-container">
+                <h2>Pomoc i Kontakt</h2>
+                <p><strong>Aktualna wersja aplikacji:</strong> 1.0.0</p>
+                <p><strong>Zasady korzystania z aplikacji:</strong> jdjdjdjddjdjdjdjdjd</p>
+                <p><strong>Polityka prywatności:</strong> gorbert nierczaak</p>
+                <p><strong>Kontakt:</strong> Masz problemy lub pytania? Wyślij email na <a href="mailto:support@example.com">support@example.com</a></p>
+                <p><strong>FAQ:</strong> jd.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

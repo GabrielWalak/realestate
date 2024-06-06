@@ -2,9 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista Opłat</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
+<body class="{{ theme }} {{ font_size }}-font">
 
+    <div class="sidebar">
+        <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
+            <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
+        </a>
+        <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
+            <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
+        </a>
+        <a href="{% url 'lista_najemcow' %}" class="button-3">
+            <button><i class="fas fa-users"></i> Najemcy</button>
+        </a>
+        <a href="{% url 'kalendarz_najmow' %}" class="button-4">
+            <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
+        </a>
+        <a href="{% url 'lista_oplat' %}" class="button-5">
+            <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
+        </a>
+        <a href="{% url 'raporty' %}" class="button-6">
+            <button><i class="fas fa-file-alt"></i> Raporty</button>
+        </a>
+        <a href="{% url 'ustawienia' %}" class="button-7">
+            <button><i class="fas fa-cogs"></i> Ustawienia</button>
+        </a>
+    </div>
+
+    <div class="main-content">
+        {% for oplata in oplaty %}
+        <div class="payment-tile">
+            <h3>{{ oplata.ID_umowy.ID_najemcy.Imie }} {{ oplata.ID_umowy.ID_najemcy.Nazwisko }}</h3>
+            <p>Kwota: {{ oplata.Kwota }} PLN</p>
+            <p>Data płatności: {{ oplata.Data_platnosci }}</p>
+            <form method="post" action="{% url 'usun_oplate' oplata.pk %}"><!--oplata.id-->
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Usuń</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <style>
+    .main-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+    }
+    
+    .payment-tile {
+        width: 30%;
+        padding: 15px;
+        margin: 10px;
+        box-shadow: 0 2px 5px rgba(244, 242, 242, 0.1);
+        background-color: #1d242f;
+        color: white;
+    }
+
+    .payment-tile h3, .payment-tile p {
+        color: white; /*dodatkowe zapewnienie, że tekst jest biały */
+    }
+
+    .delete-button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #c0392b;
+    }
+    </style>
+    
 </body>
 </html>
