@@ -1,0 +1,48 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Szczegóły Nieruchomości</h1>
+        <div class="nieruchomosc-szczegoly">
+            <h2><i class="fas fa-home"></i> {{ nieruchomosc.Typ_nieruchomosci }}</h2>
+            <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> {{ nieruchomosc.Status }}</p>
+            <hr>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Adres:</strong> {{ nieruchomosc.ID_adresu }}</p>
+            <p><i class="fas fa-info-circle"></i> <strong>Opis:</strong> {{ nieruchomosc.Opis }}</p>
+            <hr>
+            <p><i class="fas fa-dollar-sign"></i> <strong>Cena:</strong> {{ nieruchomosc.Cena }} PLN</p>
+            <p><i class="fas fa-ruler-combined"></i> <strong>Powierzchnia:</strong> {{ nieruchomosc.Powierzchnia }} m²</p>
+            <p><i class="fas fa-bed"></i> <strong>Liczba pokoi:</strong> {{ nieruchomosc.Liczba_pokoi }}</p>
+            <hr>
+            {% if zdjecia %}
+                <h3>Zdjęcia</h3>
+                <div class="zdjecia">
+                    {% for zdjecie in zdjecia %}
+                        <img src="{{ zdjecie.Obraz.url }}" alt="Zdjęcie Nieruchomości">
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if najemcy %}
+                <h3>Najemcy</h3>
+                <ul>
+                    {% for najemca in najemcy %}
+                        <li><i class="fas fa-user"></i> {{ najemca.Imie }} {{ najemca.Nazwisko }} - Telefon: {{ najemca.Telefon }} - Email: {{ najemca.Email }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if umowy %}
+                <h3>Umowy Najmu</h3>
+                <ul>
+                    {% for umowa in umowy %}
+                        <li><strong>Umowa ID:</strong> {{ umowa.ID_umowy }} - <strong>Najemca:</strong> {{ umowa.ID_najemcy.Imie }} {{ umowa.ID_najemcy.Nazwisko }} - <strong>Data rozpoczęcia:</strong> {{ umowa.Data_rozpoczecia }} - <strong>Data zakończenia:</strong> {{ umowa.Data_zakonczenia }} - <strong>Opłata miesięczna:</strong> {{ umowa.Oplata_miesieczna }} PLN - <strong>Kaucja:</strong> {{ umowa.Kaucja }} PLN - <strong>Status:</strong> {{ umowa.Status }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
