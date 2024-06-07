@@ -4,18 +4,50 @@ body {
     padding: 0; /* Usuń wewnętrzne odstępy */
     background-color: #151a21;
 }
+
+
 .nieruchomosci-lista {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-    margin-right: 2%;
+    width: 100%;
+    max-width: 82%;
+}
+.container {
+    justify-items: center;
+    width: 100%;
+}
+.nieruchomosc-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .nieruchomosc {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden; /* Prevent content from overflowing */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    max-width: 400px; /* adjust as needed */
+    color: #333;
+    min-height: 81% ;
+}
+.edit-link {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    bottom: 10px;
+    right: 10px;
+}
+
+.edit-link:hover {
+    background-color: #0056b3;
 }
 .nieruchomosc:hover {
     border: 3px solid green; /* Ramka wokół nieruchomości */
@@ -30,7 +62,6 @@ body {
 .nieruchomosc-info {
     padding: 10px; /* Odstęp wewnątrz elementu z informacjami */
     color: blueviolet;
-    float: left;
 }
 
 .nieruchomosc-info button {
@@ -45,18 +76,52 @@ body {
     letter-spacing: .08em;
     text-transform: uppercase;
     position: relative;
-
 }
 
-.container {
-    display: flex;
-    background-color: #8d9db3; /* Kolor tła między kolumnami */
+.nieruchomosc-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333; /* color for heading */
 }
 
-.column {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
+.nieruchomosc-info p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555; /* color for regular text */
+}
+
+.nieruchomosc-info p strong {
+    font-weight: bold;
+}
+
+.nieruchomosc-info p.address {
+    color: #999;
+}
+
+.nieruchomosc-info hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.nieruchomosc-info button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.nieruchomosc-info button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nieruchomosc-info button:hover {
+    background-color: #0056b3;
 }
 
 .sidebar {
@@ -66,29 +131,12 @@ body {
     height: 100%;
     text-align: center;
 }
-.container {
-    float: left;
-    width: 70%; /* zmniejszenie szerokości kontenera */
-    margin-right: 10%; /* zwiększenie marginesu z prawej strony */
-}
-
-
 
 .sidebar a {
     display: inline-block; /* Zmiana z flex na inline-block */
     margin: 1px; /* Usunięcie odstępów między przyciskami */
     text-decoration: none;
     width: 100%;
-}
-
-.light .sidebar {
-    background-color: #fff;
-    color: #000;
-}
-
-.dark .sidebar {
-    background-color: #151a21;
-    color: #151a21;
 }
 
 .sidebar button i {
@@ -122,6 +170,9 @@ body {
 .sidebar .button-7 {
     border-left: 5px solid pink;
 }
+.sidebar .button-8 {
+    border-left: 5px solid darkred;
+}
 
 .sidebar button {
     background-color: #151a21;
@@ -137,43 +188,20 @@ body {
     box-sizing: border-box; /* Dodanie właściwości box-sizing */
 }
 
-.light .sidebar button {
-    background-color: #fff;
-    color: #5b7ba3;
-}
-
-.dark .sidebar button {
-    background-color: #151a21;
-    color: #5b7ba3;
-}
-
-
-
 
 .sidebar button:hover {
     background-color: #ddd;
 }
-
 .topnav {
     margin-bottom: 10px;
     background-color: #151a21;
 }
-
-.light .topnav {
-    background-color: #fff;
-}
-
-.dark .topnav {
-    background-color: #151a21;
-}
-
-
 .topnav input
 {
     padding: 5px 5px 5px 10px;
      border: 5px solid #6438b0;
      width: 500px;
-     height: 30px;
+     height: 50px;
     font-size: 16px;
     margin-left: 20px;
     margin-top: 20px;
@@ -191,21 +219,19 @@ body {
   transition: 0.5s linear;
   cursor: pointer;
 }
-.sort-filtr {
-    position: relative; /* Dodanie pozycjonowania względnego */
-    display: inline-block;
-}
 
 .filtr {
-    position: relative; /* Dodanie pozycjonowania względnego */
+    width: 50px;
+    margin-left: 90%;
     cursor: pointer;
     color: white;
     font-size: 35px;
     margin-right: 20px;
     top: 0;
-    vertical-align: middle; /* Wycentrowanie pionowe */
 }
-
+.filtr i {
+    margin-right: 10px; /* Dodanie odstępu między ikoną a tekstem */
+}
 select#sort-options {
     display: none;
     background-color: #f9f9f9;
@@ -229,13 +255,7 @@ select#sort-options {
     display: block;
 }
 
-/* Wyśrodkowanie tekstu "Filtruj" w prawej stronie */
-.filtr {
-    margin-left: 89%;
-    text-align: right;
-}
 
-/* Style for panelu filtracji */
 .filter-options {
     font-size: small;
     color: black;
@@ -289,27 +309,8 @@ select#sort-options {
 .content {
     display: flex;
     justify-content: space-between;
-    height: 80%;
-}
 
-.container {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
 }
-
-.faq, .contact {
-    width: 45%;
-    padding: 20px;
-    background-color: #ddd; /* Dostosuj do motywu */
-    border-radius: 8px;
-}
-
-/* Stylizacja powiadomień, FAQ i kontaktu */
-.notifications, .settings, .faq, .contact {
-    margin-bottom: 20px;
-}
-
 
 .form-container,
 .image-upload-container {
@@ -322,7 +323,6 @@ select#sort-options {
     border-radius: 10px;
     transition: transform 0.3s;
 }
-
 
 .form-container:hover,
 .image-upload-container:hover {
@@ -365,9 +365,6 @@ select#sort-options {
     background-color: #4CAF50;
 }
 
-
-
-
 #id_Opis {
     width: calc(100% - 20px);
     padding: 10px;
@@ -389,16 +386,17 @@ select#sort-options {
 
 }
 
-
-
-
-
 /* Wyśrodkowanie tekstu "Sortowanie" */
 .sort-filtr  {
+    width: 50%;
+    float: left;
     margin-right: 20px; /* Dodaj odstęp z prawej strony */
     text-align: left; /* Wyśrodkuj tekst w prawo */
     color: #cccccc;
     font-size: 35px;
+    position: relative; /* Dodanie pozycjonowania względnego */
+    display: inline-block;
+
 }
 
 /* Wyśrodkowanie panelu sortowania */
@@ -455,6 +453,7 @@ select#sort-options {
     right: 0; /* Wyrównanie do prawej krawędzi */
     margin-top: 10px; /* Dodanie odstępu od sort options */
 }
+
 
 body.light {
     background-color: #fff; /* Jasne tło */

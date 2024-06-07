@@ -38,15 +38,15 @@ class NieruchomosciFilter(django_filters.FilterSet):
 
 
 class SortFilter(django_filters.FilterSet):
-    Cena = django_filters.OrderingFilter(
+    ordering = django_filters.OrderingFilter(
         # Note: use '-field_name' for descending order
         choices=[
             ('-Cena', 'Cena malejąco'),
             ('Cena', 'Cena rosnąco'),
         ],
-        label=''
+        label='Sortowanie'
     )
 
     class Meta:
         model = Nieruchomosc
-        fields = ['Cena']
+        fields = ['ordering']

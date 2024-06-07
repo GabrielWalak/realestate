@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.lista_nieruchomosci, name='lista_nieruchomosci'),
+    path('lista', views.lista_nieruchomosci, name='lista_nieruchomosci'),
     path('nieruchomosci/dodaj/', views.dodaj_nieruchomosc, name='dodaj_nieruchomosc'),
     path('nieruchomosci/<int:nieruchomosc_id>/dodaj_zdjecie/', views.dodaj_zdjecie, name='dodaj_zdjecie'),
     path('nieruchomosci/<int:nieruchomosc_ID>/edytuj/', views.edytuj_nieruchomosc, name='edytuj_nieruchomosc'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('raporty/', views.raporty, name='raporty'),
     path('ustawienia/', views.ustawienia, name='ustawienia'),
     path('nieruchomosci/<int:nieruchomosc_ID>/edytuj/zmien_nieruchomosc', views.zmien_nieruchomosc, name='zmien_nieruchomosc'),
+    path('nieruchomosci/<int:ID_nieruchomosci>/', views.szczegoly_nieruchomosci, name='nieruchomosc_szczegoly'),
     path('zmien_tlo/', views.zmien_tlo, name='zmien_tlo'),
     path('zmien-czcionke/', views.zmien_czcionke, name='zmien_czcionke'),
     path('api/najmy/', views.get_najmy, name='api-najmy'),

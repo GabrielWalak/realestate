@@ -2,14 +2,17 @@ from django.shortcuts import render
 from .models import Nieruchomosc, Najemca, UmowaNajmu, Oplata
 from .forms import ZdjecieForm, NieruchomoscForm, EdytujNieruchomoscForm
 from .filters import NieruchomosciFilter, AdresSearchFilter, SortFilter
-
+from django.shortcuts import render, redirect
+from .forms import ZdjecieForm
 
 def lista_nieruchomosci(request):
     nieruchomosci_list = Nieruchomosc.objects.all()
     adres_search_filter = AdresSearchFilter(request.GET, queryset=nieruchomosci_list)
     nieruchomosci_filter = NieruchomosciFilter(request.GET, queryset=adres_search_filter.qs)
     sort_filter = SortFilter(request.GET, queryset=nieruchomosci_filter.qs)
-    nieruchomosci = sort_filter.qs
+
+    # Use the sorted queryset
+    nieruchomosci = sort_filter.qs.select_related('ID_adresu').prefetch_related('najemca_set')
 
     theme = request.session.get('theme', 'light')  # Pobiera motyw z sesji; domyślnie 'light'
 
@@ -31,7 +34,7 @@ def edytuj_nieruchomosc(request, nieruchomosc_ID):
     return render(request, 'edytuj_nieruchomosc.html', {'nieruchomosc': nieruchomosc[0]})
 
 def dodaj_nieruchomosc(request):
-    theme = request.session.get('theme', 'light') 
+    theme = request.session.get('theme', 'light')
     font_size = request.session.get('font_size', 'medium')
     if request.method == 'POST':
         form = NieruchomoscForm(request.POST)
@@ -107,7 +110,7 @@ def zmien_nieruchomosc(request, nieruchomosc_ID):
             nieruchomosc.Liczba_pokoi = form.cleaned_data["liczba_pokoi"]
             nieruchomosc.save()
             return redirect("lista_nieruchomosci")
-        
+
 
 
 def zmien_tlo(request):
@@ -118,7 +121,7 @@ def zmien_tlo(request):
 
 def zmien_czcionke(request):
     if request.method == 'POST':
-        font_size = request.POST.get('font_size', 'medium')  
+        font_size = request.POST.get('font_size', 'medium')
         request.session['font_size'] = font_size
     return redirect('ustawienia')
 
@@ -200,7 +203,7 @@ def get_najmy(request):
         })
     return JsonResponse(data, safe=False)
 
-#Tymek, ciagle 
+#Tymek, ciagle
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Oplata
 
@@ -210,6 +213,19 @@ def usun_oplate(request, oplata_id):
         oplata.delete()
         return redirect('lista_oplat')
     return render(request, 'lista_oplat.html')
+
+def szczegoly_nieruchomosci(request, ID_nieruchomosci):
+    nieruchomosc = get_object_or_404(Nieruchomosc, pk=ID_nieruchomosci)
+    najemcy = nieruchomosc.najemca_set.all()
+
+    zdjecia = nieruchomosc.zdjecie_set.all()
+    context = {
+        'nieruchomosc': nieruchomosc,
+        'najemcy': najemcy,
+
+        'zdjecia': zdjecia,
+    }
+    return render(request, 'szczegoly.html', context)
 
 
 

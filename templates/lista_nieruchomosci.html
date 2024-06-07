@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body class="{{ theme }} {{ font_size }}-font">
+<body>
 <div class="sidebar">
     <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
         <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
@@ -27,6 +27,9 @@
     <a href="{% url 'ustawienia' %}"class="button-7">
         <button><i class="fas fa-cogs"></i> Ustawienia</button>
     </a>
+    <a href="/users/login/" class="button-8">
+            <button><i class="fas fa-sign-out-alt"></i> Wyloguj się</button>
+        </a>
 </div>
 
 <div class="topnav">
@@ -41,9 +44,6 @@
 </div>
         </div>
 
-
-
-<div class="content">
     <div class="sort-filtr">
         <form method="get">
             <span class="sort-label">
@@ -55,13 +55,12 @@
             </span>
         </form>
     </div>
-</div>
 
     
     
     
-        <div class="filtr" >
-            <i class="fas fa-filter" style="margin-right: 10%;"> Filtruj</i>  
+        <div class="filtr">
+            <i class="fas fa-filter">Filtruj</i>  
     <form method="get" class="filter-options">  
         {{ nieruchomosci_filter.form.as_p }} 
         <button type="submit">Filtruj</button>
@@ -72,28 +71,46 @@
 
 
 <div class="container">
-</div>
-        <div class="nieruchomosci-lista">
-            {% for nieruchomosc in nieruchomosci %}
+
+
+<div class="nieruchomosci-lista">
+    {% for nieruchomosc in nieruchomosci %}
+        <div class="nieruchomosc-container">
+            <a href="{% url 'nieruchomosc_szczegoly' nieruchomosc.ID_nieruchomosci %}" class="nieruchomosc-link">
                 <div class="nieruchomosc">
-                    {% if nieruchomosc.zdjecie_set.all %}
-                        {% with zdjecie=nieruchomosc.zdjecie_set.first %}
-                            <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}">
-                        {% endwith %}
-                    {% else %}
-                    {% endif %}
                     <div class="nieruchomosc-info">
-                        <h3>{{ nieruchomosc.Typ_nieruchomosci }}</h3>
-                        <p>Status: {{ nieruchomosc.Status }}</p>
-                        <p>{{ nieruchomosc.ID_adresu }}</p>
-                        <p>Cena: {{ nieruchomosc.Cena }} PLN</p>
-                        <p>Powierzchnia: {{ nieruchomosc.Powierzchnia }} m2</p>
-                        <p>Liczba pokoi: {{ nieruchomosc.Liczba_pokoi }}</p>
-                        <button><a href="nieruchomosci/{{ nieruchomosc.ID_nieruchomosci }}/edytuj/">Edytuj</a></button>
-                        <!-- ... inne dane ... -->
+                        <h3><i class="fas fa-home"></i> {{ nieruchomosc.Typ_nieruchomosci }}</h3>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> {{ nieruchomosc.Status }}</p>
+                        <hr>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> {{ nieruchomosc.ID_adresu }}</p>
+                        <hr>
+                        <p><i class="fas fa-dollar-sign"></i> <strong>Cena:</strong> {{ nieruchomosc.Cena }} PLN</p>
+                        <hr>
+                        <p><i class="fas fa-ruler-combined"></i> <strong>Powierzchnia:</strong> {{ nieruchomosc.Powierzchnia }} m²</p>
+                        <hr>
+                        <p><i class="fas fa-bed"></i> <strong>Liczba pokoi:</strong> {{ nieruchomosc.Liczba_pokoi }}</p>
+                        <hr>
+                        {% if nieruchomosc.zdjecie_set.all %}
+                            {% with zdjecie=nieruchomosc.zdjecie_set.first %}
+                                <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}" class="nieruchomosc-zdjecie">
+                            {% endwith %}
+                        {% endif %}
+                        {% if nieruchomosc.najemca_set.exists %}
+                            {% for najemca in nieruchomosc.najemca_set.all %}
+                                <p><i class="fas fa-user"></i> <strong>Najemca:</strong> {{ najemca.Imie }} {{ najemca.Nazwisko }}</p>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
-            {% endfor %}
+            </a>
+            <a href="/nieruchomosci/{{ nieruchomosc.ID_nieruchomosci }}/edytuj/" class="edit-link">
+                <i class="fas fa-edit"></i> Edytuj
+            </a>
         </div>
+    {% endfor %}
+</div>
+</div>
+
+
 </body>
 </html>
