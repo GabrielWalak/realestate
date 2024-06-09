@@ -90,30 +90,58 @@
                         <hr>
                         <p><i class="fas fa-bed"></i> <strong>Liczba pokoi:</strong> {{ nieruchomosc.Liczba_pokoi }}</p>
                         <hr>
-                        {% if nieruchomosc.zdjecie_set.all %}
-                            {% with zdjecie=nieruchomosc.zdjecie_set.first %}
-                                <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}" class="nieruchomosc-zdjecie">
-                            {% endwith %}
-                        {% endif %}
-                        {% if nieruchomosc.najemca_set.exists %}
-                            {% for najemca in nieruchomosc.najemca_set.all %}
-                                <p><i class="fas fa-user"></i> <strong>Najemca:</strong> {{ najemca.Imie }} {{ najemca.Nazwisko }}</p>
-                            {% endfor %}
-                        {% endif %}
+                {% if nieruchomosc.zdjecie_set.all %}
+                    {% with zdjecie=nieruchomosc.zdjecie_set.first %}
+                        <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}" class="nieruchomosc-zdjecie">
+                    {% endwith %}
+                {% endif %}
+           
+                {% if nieruchomosc.najemca_set.exists %}
+                    {% for najemca in nieruchomosc.najemca_set.all %}
+                        <p><i class="fas fa-user"></i> <strong>Najemca:</strong> {{ najemca.Imie }} {{ najemca.Nazwisko }}</p>
+                    {% endfor %}
+                {% endif %}
                     </div>
                 </div>
             </a>
             <a href="/nieruchomosci/{{ nieruchomosc.ID_nieruchomosci }}/edytuj/" class="edit-link">
                 <i class="fas fa-edit"></i> Edytuj
             </a>
-            <a href="/nieruchomosci/{{ nieruchomosc.ID_nieruchomosci }}/usun/" class="delete-link">
-                        <i class="fas fa-trash-alt"></i> Usuń
-            </a>
+            <form method="post" action="{% url 'usun_nieruchomosc' nieruchomosc.ID_nieruchomosci %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-delete">
+        <i class="fas fa-trash-alt"></i> Usuń
+    </button>
+</form>
         </div>
     {% endfor %}
 </div>
 </div>
+<!-- Pop-up notification -->
+<div id="delete-success-popup" class="popup-notification" style="display: none;">
+    Nieruchomość została pomyślnie usunięta.
+</div>
 
+<script>
+    function confirmDelete(event) {
+        if (!confirm("Czy na pewno chcesz usunąć tę nieruchomość?")) {
+            event.preventDefault();
+        }
+    }
 
+    // Function to show the pop-up notification
+    function showDeleteSuccessPopup() {
+        const popup = document.getElementById('delete-success-popup');
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 3000); // Hide after 3 seconds
+    }
+
+    // Check for a success indicator in the URL
+    if (window.location.search.includes('deleted=true')) {
+        showDeleteSuccessPopup();
+    }
+</script>
 </body>
 </html>

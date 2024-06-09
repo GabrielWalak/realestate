@@ -244,4 +244,22 @@ def szczegoly_nieruchomosci(request, ID_nieruchomosci):
     return render(request, 'szczegoly.html', context)
 
 
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Nieruchomosc
+
+
+def usun_nieruchomosc(request, pk):
+    nieruchomosc = get_object_or_404(Nieruchomosc, pk=pk)
+
+    if request.method == "POST":
+        nieruchomosc.delete()
+        return redirect(f"{reverse('lista_nieruchomosci')}?deleted=true")
+    else:
+        return redirect('lista_nieruchomosci')
+
+
+
 

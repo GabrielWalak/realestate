@@ -547,6 +547,7 @@ body.dark {
 }
 
 .delete-link {
+    background-color: red;
     display: inline-flex;
     margin: 5px 0;
     padding: 8px 16px;
@@ -555,12 +556,38 @@ body.dark {
     text-align: center;
     border-radius: 4px;
     text-decoration: none;
+    float:right;
+}
+/* Style for delete button */
+
+.delete-link i {
+    color: red;
 }
 
-/* Styl dla przycisku usuwania po najechaniu */
-.delete-link:hover {
-    background-color: #c82333;
+/* Style for pop-up notification */
+.popup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
 
 /* Styl dla kontenera najemcy po najechaniu */
 .najemca-container:hover {
@@ -568,4 +595,46 @@ body.dark {
 }
 
 
+/* Ogólny styl przycisku */
+.btn {
+    float: right;
+    display: inline-flex;
+    align-items: center;
+    top:5px;
+    margin-top: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    gap: 8px; /* Dystans między ikoną a tekstem */
+}
+
+.btn i {
+    font-size: 15px;
+}
+
+/* Styl przycisku Edytuj */
+.btn-edit {
+    background-color: #007bff; /* Niebieski */
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 15px rgba(0, 91, 187, 0.3);
+}
+
+/* Styl przycisku Usuń */
+.btn-delete {
+    background-color: #dc3545; /* Czerwony */
+}
+
+.btn-delete:hover {
+    background-color: #a71d2a;
+    box-shadow: 0px 4px 15px rgba(215, 58, 58, 0.3);
+}
 

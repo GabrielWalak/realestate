@@ -21,7 +21,8 @@ urlpatterns = [
     path('oplaty/', views.lista_oplat, name='lista_oplat'),
     path('usun_oplate/<int:oplata_id>/', views.usun_oplate, name='usun_oplate'),
     path('najemcy/', views.lista_najemcow, name='lista_najemcow'),
-    path('najemcy/<int:najemca_id>/edytuj/', views.edytuj_najemce, name='edytuj_najemce')
+    path('najemcy/<int:najemca_id>/edytuj/', views.edytuj_najemce, name='edytuj_najemce'),
+    path('nieruchomosci/<int:pk>/usun/', views.usun_nieruchomosc, name='usun_nieruchomosc'),
 ]
 
 if settings.DEBUG:
