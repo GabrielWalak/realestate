@@ -2,23 +2,28 @@ from django.shortcuts import render
 from .models import Nieruchomosc, Najemca, UmowaNajmu, Oplata
 from .forms import ZdjecieForm, NieruchomoscForm, EdytujNieruchomoscForm
 from .filters import NieruchomosciFilter, AdresSearchFilter, SortFilter
-
+from django.shortcuts import render, redirect
+from .forms import ZdjecieForm
 
 def lista_nieruchomosci(request):
     nieruchomosci_list = Nieruchomosc.objects.all()
     adres_search_filter = AdresSearchFilter(request.GET, queryset=nieruchomosci_list)
     nieruchomosci_filter = NieruchomosciFilter(request.GET, queryset=adres_search_filter.qs)
     sort_filter = SortFilter(request.GET, queryset=nieruchomosci_filter.qs)
-    nieruchomosci = sort_filter.qs
+
+    # Use the sorted queryset
+    nieruchomosci = sort_filter.qs.select_related('ID_adresu').prefetch_related('najemca_set')
 
     theme = request.session.get('theme', 'light')  # Pobiera motyw z sesji; domyślnie 'light'
+    font_size = request.session.get('font_size', 'medium')
 
     kontekst = {
         'nieruchomosci': nieruchomosci,
         'nieruchomosci_filter': nieruchomosci_filter,
         'adres_search_filter': adres_search_filter,
         'sort_filter': sort_filter,
-        'theme': theme  # Dodaj motyw do kontekstu
+        'theme': theme,
+        'font_size': font_size
     }
     return render(request, 'lista_nieruchomosci.html', kontekst)
 
@@ -26,12 +31,14 @@ def lista_nieruchomosci(request):
 
 
 def edytuj_nieruchomosc(request, nieruchomosc_ID):
+    theme = request.session.get('theme', 'dark')
+    font_size = request.session.get('font_size', 'medium')
     nieruchomosc = Nieruchomosc.objects.filter(ID_nieruchomosci=nieruchomosc_ID)
     print(request, nieruchomosc_ID)
-    return render(request, 'edytuj_nieruchomosc.html', {'nieruchomosc': nieruchomosc[0]})
+    return render(request, 'edytuj_nieruchomosc.html', {'nieruchomosc': nieruchomosc[0], 'font_size': font_size, 'theme': theme})
 
 def dodaj_nieruchomosc(request):
-    theme = request.session.get('theme', 'light') 
+    theme = request.session.get('theme', 'dark')
     font_size = request.session.get('font_size', 'medium')
     if request.method == 'POST':
         form = NieruchomoscForm(request.POST)
@@ -40,13 +47,29 @@ def dodaj_nieruchomosc(request):
             return redirect('lista_nieruchomosci')
     else:
         form = NieruchomoscForm()
-    return render(request, 'dodaj_nieruchomosc.html', {'form': form, 'theme': theme, 'theme': theme})
+    return render(request, 'dodaj_nieruchomosc.html', {'form': form, 'font_size': font_size, 'theme': theme})
 
 def lista_najemcow(request):
     theme = request.session.get('theme', 'dark')
     font_size = request.session.get('font_size', 'medium')
-    najemcy = Najemca.objects.all().prefetch_related('ID_najemcy')
-    return render(request, 'lista_najemcow.html', {'najemcy': najemcy,'theme': theme,  'font_size': font_size})
+    najemcy = Najemca.objects.all()
+    context = {
+        'najemcy': najemcy,
+        'theme': theme,
+        'font_size': font_size,
+    }
+    return render(request, 'lista_najemcow.html', context,)
+
+def edytuj_najemce(request, najemca_id):
+    najemca = get_object_or_404(Najemca, pk=najemca_id)
+    if request.method == "POST":
+        form = NajemcaForm(request.POST, instance=najemca)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_najemcow')
+    else:
+        form = NajemcaForm(instance=najemca)
+    return render(request, 'edytuj_najemce.html', {'form': form})
 
 def kalendarz_najmow(request):
     theme = request.session.get('theme', 'dark')
@@ -70,7 +93,7 @@ def ustawienia(request):
         request.session['font_size'] = request.POST.get('font_size', 'medium')
         return redirect('ustawienia')
 
-    theme = request.session.get('theme', 'light')
+    theme = request.session.get('theme', 'dark')
     font_size = request.session.get('font_size', 'medium')
     return render(request, 'ustawienia.html', {'theme': theme, 'font_size': font_size})
 
@@ -107,7 +130,7 @@ def zmien_nieruchomosc(request, nieruchomosc_ID):
             nieruchomosc.Liczba_pokoi = form.cleaned_data["liczba_pokoi"]
             nieruchomosc.save()
             return redirect("lista_nieruchomosci")
-        
+
 
 
 def zmien_tlo(request):
@@ -118,7 +141,7 @@ def zmien_tlo(request):
 
 def zmien_czcionke(request):
     if request.method == 'POST':
-        font_size = request.POST.get('font_size', 'medium')  
+        font_size = request.POST.get('font_size', 'medium')
         request.session['font_size'] = font_size
     return redirect('ustawienia')
 
@@ -200,7 +223,7 @@ def get_najmy(request):
         })
     return JsonResponse(data, safe=False)
 
-#Tymek, ciagle 
+#Tymek, ciagle
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Oplata
 
@@ -210,6 +233,37 @@ def usun_oplate(request, oplata_id):
         oplata.delete()
         return redirect('lista_oplat')
     return render(request, 'lista_oplat.html')
+
+def szczegoly_nieruchomosci(request, ID_nieruchomosci):
+    nieruchomosc = get_object_or_404(Nieruchomosc, pk=ID_nieruchomosci)
+    najemcy = nieruchomosc.najemca_set.all()
+
+    zdjecia = nieruchomosc.zdjecie_set.all()
+    context = {
+        'nieruchomosc': nieruchomosc,
+        'najemcy': najemcy,
+
+        'zdjecia': zdjecia,
+    }
+    return render(request, 'szczegoly.html', context)
+
+
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Nieruchomosc
+
+
+def usun_nieruchomosc(request, pk):
+    nieruchomosc = get_object_or_404(Nieruchomosc, pk=pk)
+
+    if request.method == "POST":
+        nieruchomosc.delete()
+        return redirect(f"{reverse('lista_nieruchomosci')}?deleted=true")
+    else:
+        return redirect('lista_nieruchomosci')
+
 
 
 

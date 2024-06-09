@@ -4,18 +4,51 @@ body {
     padding: 0; /* Usuń wewnętrzne odstępy */
     background-color: #151a21;
 }
+
+
 .nieruchomosci-lista {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-    margin-right: 2%;
+    width: 100%;
+    max-width: 82%;
+}
+.container {
+    justify-items: center;
+    width: 100%;
+}
+.nieruchomosc-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .nieruchomosc {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden; /* Prevent content from overflowing */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    margin-bottom: 5px;
+    max-width: 400px; /* adjust as needed */
+    color: #333;
+    min-height: 81% ;
+}
+.edit-link {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    bottom: 10px;
+    right: 10px;
+}
+
+.edit-link:hover {
+    background-color: #0056b3;
 }
 .nieruchomosc:hover {
     border: 3px solid green; /* Ramka wokół nieruchomości */
@@ -30,7 +63,6 @@ body {
 .nieruchomosc-info {
     padding: 10px; /* Odstęp wewnątrz elementu z informacjami */
     color: blueviolet;
-    float: left;
 }
 
 .nieruchomosc-info button {
@@ -45,34 +77,69 @@ body {
     letter-spacing: .08em;
     text-transform: uppercase;
     position: relative;
-
 }
 
-.container {
-    display: flex;
-    background-color: #8d9db3; /* Kolor tła między kolumnami */
+.nieruchomosc-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333; /* color for heading */
 }
 
-.column {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
+.nieruchomosc-info p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555; /* color for regular text */
+}
+
+.nieruchomosc-info p strong {
+    font-weight: bold;
+}
+
+.nieruchomosc-info p.address {
+    color: #999;
+}
+
+.nieruchomosc-info hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.nieruchomosc-info button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.nieruchomosc-info button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nieruchomosc-info button:hover {
+    background-color: #0056b3;
 }
 
 .sidebar {
-    background-color: #151a21;
     float: left;
     width: 15%;
     height: 100%;
     text-align: center;
 }
-.container {
-    float: left;
-    width: 70%; /* zmniejszenie szerokości kontenera */
-    margin-right: 10%; /* zwiększenie marginesu z prawej strony */
+
+
+.sidebar-dark {
+    background-color: #151a21;
 }
 
-
+.sidebar-light {
+    background-color: #fff; /* Example light theme color */
+}
 
 .sidebar a {
     display: inline-block; /* Zmiana z flex na inline-block */
@@ -81,15 +148,7 @@ body {
     width: 100%;
 }
 
-.light .sidebar {
-    background-color: #fff;
-    color: #000;
-}
 
-.dark .sidebar {
-    background-color: #151a21;
-    color: #151a21;
-}
 
 .sidebar button i {
     vertical-align: middle;
@@ -122,6 +181,9 @@ body {
 .sidebar .button-7 {
     border-left: 5px solid pink;
 }
+.sidebar .button-8 {
+    border-left: 5px solid darkred;
+}
 
 .sidebar button {
     background-color: #151a21;
@@ -137,43 +199,37 @@ body {
     box-sizing: border-box; /* Dodanie właściwości box-sizing */
 }
 
-.light .sidebar button {
-    background-color: #fff;
-    color: #5b7ba3;
-}
-
-.dark .sidebar button {
+.sidebar-dark button {
     background-color: #151a21;
-    color: #5b7ba3;
 }
 
-
+.sidebar-light button {
+    background-color: #fff;
+}
 
 
 .sidebar button:hover {
     background-color: #ddd;
 }
-
 .topnav {
+    margin-bottom: 10px;
+}
+
+.topnav-dark {
     margin-bottom: 10px;
     background-color: #151a21;
 }
 
-.light .topnav {
+.topnav-light {
+    margin-bottom: 10px;
     background-color: #fff;
 }
-
-.dark .topnav {
-    background-color: #151a21;
-}
-
-
 .topnav input
 {
     padding: 5px 5px 5px 10px;
      border: 5px solid #6438b0;
      width: 500px;
-     height: 30px;
+     height: 50px;
     font-size: 16px;
     margin-left: 20px;
     margin-top: 20px;
@@ -191,21 +247,19 @@ body {
   transition: 0.5s linear;
   cursor: pointer;
 }
-.sort-filtr {
-    position: relative; /* Dodanie pozycjonowania względnego */
-    display: inline-block;
-}
 
 .filtr {
-    position: relative; /* Dodanie pozycjonowania względnego */
+    width: 50px;
+    margin-left: 90%;
     cursor: pointer;
     color: white;
     font-size: 35px;
     margin-right: 20px;
     top: 0;
-    vertical-align: middle; /* Wycentrowanie pionowe */
 }
-
+.filtr i {
+    margin-right: 10px; /* Dodanie odstępu między ikoną a tekstem */
+}
 select#sort-options {
     display: none;
     background-color: #f9f9f9;
@@ -217,6 +271,116 @@ select#sort-options {
     font-size: 16px; /* Zwiększamy rozmiar czcionki */
 }
 
+/* style.css */
+
+/* Dark theme styles */
+body.dark {
+    background-color: #151a21;
+    color: white; /* Default text color */
+}
+
+body.dark .payment-tile {
+    background-color: #1d242f;
+    color: white; /* Text color inside payment tiles */
+}
+
+body.dark .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+body.dark .delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Light theme styles */
+body.light {
+    background-color: #f0f0f0;
+    color: black; /* Default text color */
+}
+
+body.light .payment-tile {
+    background-color: #5b7ba3;
+    color: black; /* Text color inside payment tiles */
+}
+
+body.light .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+body.light .delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* General styles */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.payment-tile {
+    width: 30%;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(244, 242, 242, 0.1);
+}
+
+.payment-tile h3, .payment-tile p {
+    color: inherit; /* Ensure text color inherits from parent */
+}
+
+.delete-button {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+/* style.css */
+
+/* Dark theme styles */
+body.dark {
+    background-color: #151a21;
+    color: white; /* Default text color */
+}
+
+body.dark .fc-daygrid-day-number,
+body.dark .fc-col-header-cell,
+body.dark .fc-daygrid-day-top,
+body.dark .fc-header-toolbar {
+    color: white; /* Calendar text color for dark theme */
+}
+
+/* Light theme styles */
+body.light {
+    background-color: #f0f0f0;
+    color: black; /* Default text color */
+}
+
+body.light .fc-daygrid-day-number,
+body.light .fc-col-header-cell,
+body.light .fc-daygrid-day-top,
+body.light .fc-header-toolbar {
+    color: black; /* Calendar text color for light theme */
+}
+
+/* General calendar styles */
+#calendar {
+    max-width: 900px;
+    margin: 40px auto; /* Center the calendar on the page */
+}
+
+.fc-event {
+    margin-bottom: 5px; /* Adds spacing between events */
+    padding: 2px 5px; /* Adjusts padding inside the event */
+    font-size: 12px;
+    white-space: normal;
+}
+
+
 
 #sort-options:hover {
     /* Po najechaniu na pole sortowania, zwiększamy jego rozmiar */
@@ -224,30 +388,55 @@ select#sort-options {
 }
 
 
-/* Pokazywanie opcji sortowania po najechaniu na ikonę sortowania */
-.filtr:nth-child(1):hover #sort-options {
+/* Pokazywanie panelu filtracji po najechaniu na napis lub ikonę "Filtruj" */
+.filtr:hover .filter-options {
     display: block;
 }
+
 
 .filter-options {
     font-size: small;
     color: black;
     display: none;
     position: absolute;
-    right: 40%;
+    right: 0; /* Wycentrowanie panelu filtracji do prawej krawędzi */
     background-color: #f9f9f9;
     width: 170px; /* Dostosowanie szerokości panelu filtracji */
     padding: 10px; /* Dostosowanie wewnętrznego odstępu */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    left: 0; /* Ustawienie panelu na lewo */
-    top: 100%; /* Przesunięcie panelu poniżej ikony */
     text-align: left;
 }
 
-/* Pokazywanie panelu filtracji po najechaniu na ikonę filtracji */
-.filtr:nth-child(2):hover .filter-options {
-    display: block;
+/* Style dla etykiet */
+.filter-options label {
+    display: block; /* Etykiety na własnej linii */
+    margin-bottom: 5px; /* Dodanie odstępu między etykietą a polem wprowadzania */
+    font-weight: bold; /* Wyróżnienie etykiet */
+}
+
+/* Style dla pól wprowadzania i rozwijanych menu */
+.filter-options input[type="number"],
+.filter-options select {
+    width: 100%; /* Dostosowanie szerokości według potrzeb */
+    border: 1px solid #ccc;
+}
+
+/* Style dla przycisku submit */
+.filter-options button {
+    padding: 8px 15px;
+    background-color: #4CAF50; /* Kolor tła (przykładowy kolor) */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px; /* Dodanie odstępu z góry */
+}
+
+/* Style dla przycisku reset */
+.filter-options button[type="reset"] {
+    background-color: #f44336; /* Kolor tła (przykładowy kolor dla przycisku reset) */
+    float: right; /* Wyrównanie przycisku reset do prawej */
+    margin-left: 10px; /* Dodanie odstępu z lewej */
 }
 
 /* formularz dodawanie nieruchomosci
@@ -258,27 +447,8 @@ select#sort-options {
 .content {
     display: flex;
     justify-content: space-between;
-    height: 80%;
-}
 
-.container {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
 }
-
-.faq, .contact {
-    width: 45%;
-    padding: 20px;
-    background-color: #ddd; /* Dostosuj do motywu */
-    border-radius: 8px;
-}
-
-/* Stylizacja powiadomień, FAQ i kontaktu */
-.notifications, .settings, .faq, .contact {
-    margin-bottom: 20px;
-}
-
 
 .form-container,
 .image-upload-container {
@@ -291,7 +461,6 @@ select#sort-options {
     border-radius: 10px;
     transition: transform 0.3s;
 }
-
 
 .form-container:hover,
 .image-upload-container:hover {
@@ -334,9 +503,6 @@ select#sort-options {
     background-color: #4CAF50;
 }
 
-
-
-
 #id_Opis {
     width: calc(100% - 20px);
     padding: 10px;
@@ -358,47 +524,17 @@ select#sort-options {
 
 }
 
-
-
-
-/* Wyśrodkowanie tekstu "Filtruj" w prawej stronie */
-.filtr {
-    margin-left: 89%;
-    text-align: right;
-}
-
-/* Style for labels */
-.filter-options label {
-    display: block; /* Labels on their own line */
-    margin-bottom: 5px; /* Add space between label and input */
-    font-weight: bold; /* Make labels stand out */
-}
-
-/* Style for input fields and select menus */
-.filter-options input[type="number"],
-.filter-options select {
-    width: 100px; /* Adjust width as needed */
-    border: 1px solid #ccc;
-}
-
-/* Style for submit button */
-.filter-options button {
-    padding: 8px 15px;
-    background-color: #4CAF50; /* Example color */
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.filter-options button[type="reset"] { /* Target the reset button specifically */
-    background-color: #f44336; /* Example color for a red "clear" button */
-    float: right;
-}
 /* Wyśrodkowanie tekstu "Sortowanie" */
 .sort-filtr  {
+    width: 50%;
+    float: left;
     margin-right: 20px; /* Dodaj odstęp z prawej strony */
     text-align: left; /* Wyśrodkuj tekst w prawo */
     color: #cccccc;
     font-size: 35px;
+    position: relative; /* Dodanie pozycjonowania względnego */
+    display: inline-block;
+
 }
 
 /* Wyśrodkowanie panelu sortowania */
@@ -416,6 +552,46 @@ select#sort-options {
 .sort-filtr:hover #sort-options {
     display: block;
 }
+.sort-filtr #sort-button {
+    display: none;
+}
+
+.sort-filtr:hover #sort-button {
+    display: inline-block;
+}
+/* Style for sort label */
+.sort-label {
+    position: relative; /* Ustawienie pozycji względem rodzica */
+    cursor: pointer; /* Kursor wskazujący na element interaktywny */
+}
+
+/* Style for sort options */
+.sort-options {
+    display: none; /* Ukrycie sort options */
+    position: absolute; /* Ustawienie pozycji absolutnej */
+    top: 100%; /* Umieszczenie listy pod sort label */
+    left: 0; /* Wyrównanie do lewej krawędzi */
+    background-color: #f9f9f9; /* Kolor tła */
+    min-width: 200px; /* Minimalna szerokość */
+    min-height: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Cień */
+    z-index: 1; /* Nadanie najwyższej warstwy */
+    border: none; /* Brak obramowania */
+}
+
+/* Pokazywanie sort options */
+.sort-label.active .sort-options {
+    display: block; /* Pokazanie sort options */
+}
+
+/* Style for sort button */
+#sort-button {
+    position: absolute; /* Ustawienie pozycji absolutnej */
+    top: 0; /* Umieszczenie przycisku na górze */
+    right: 0; /* Wyrównanie do prawej krawędzi */
+    margin-top: 10px; /* Dodanie odstępu od sort options */
+}
+
 
 body.light {
     background-color: #fff; /* Jasne tło */
@@ -477,5 +653,125 @@ body.dark {
     white-space: nowrap; /* Prevent labels from wrapping */
 }
 
+/* Aktualizacja stylu CSS */
 
+/* Zaktualizowany styl dla kontenera nieruchomości */
+.najemca-container {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0px 20px 40px;
+    color: #333;
+    display: inline-block;
+
+}
+
+/* Zaktualizowany styl dla linku edycji */
+.edit-link {
+    display: inline-flex;
+    margin-top: 5px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.delete-link {
+    background-color: red;
+    display: inline-flex;
+    margin: 5px 0;
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    float:right;
+}
+/* Style for delete button */
+
+.delete-link i {
+    color: red;
+}
+
+/* Style for pop-up notification */
+.popup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+/* Styl dla kontenera najemcy po najechaniu */
+.najemca-container:hover {
+    border-color: green; /* Zmiana koloru obramowania po najechaniu myszką */
+}
+
+
+/* Ogólny styl przycisku */
+
+.btn {
+    float: right;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    gap: 8px; /* Dystans między ikoną a tekstem */
+}
+
+.btn i {
+    font-size: 15px;
+}
+
+/* Styl przycisku Edytuj */
+.btn-edit {
+    background-color: #007bff; /* Niebieski */
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 15px rgba(0, 91, 187, 0.3);
+}
+
+/* Styl przycisku Usuń */
+.btn-delete {
+    background-color: #dc3545; /* Czerwony */
+}
+
+.btn-delete:hover {
+    background-color: #a71d2a;
+    box-shadow: 0px 4px 15px rgba(215, 58, 58, 0.3);
+}
 

@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('listings.urls')),
+    path('login/', include('users.urls')),  # Include the user URLs
+    path('register/', include('users.urls')),  # Include the register URLs
+    path('users/', include('users.urls')),  # Include all user-related URLs
+    path('', lambda request: redirect('login')),  # Redirect root URL to login
+    path('', include('listings.urls')),  # Ensure 'listings.urls' handles other paths correctly
 ]

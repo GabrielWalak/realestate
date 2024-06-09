@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     {% load static %}
@@ -6,31 +5,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="{{ theme }} {{ font_size }}-font">
-<div class="sidebar">
-    <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
-        <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
-    </a>
-    <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
-        <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
-    </a>
-    <a href="{% url 'lista_najemcow' %}" class="button-3">
-        <button><i class="fas fa-users"></i> Najemcy</button>
-    </a>
-    <a href="{% url 'kalendarz_najmow' %}" class="button-4">
-        <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
-    </a>
-    <a href="{% url 'lista_oplat' %}" class="button-5">
-        <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
-    </a>
-    <a href="{% url 'raporty' %}" class="button-6">
-        <button><i class="fas fa-file-alt"></i> Raporty</button>
-    </a>
-    <a href="{% url 'ustawienia' %}"class="button-7">
-        <button><i class="fas fa-cogs"></i> Ustawienia</button>
-    </a>
-</div>
+    <div class="sidebar sidebar-{{ theme }}">
+        <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
+            <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
+        </a>
+        <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
+            <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
+        </a>
+        <a href="{% url 'lista_najemcow' %}" class="button-3">
+            <button><i class="fas fa-users"></i> Najemcy</button>
+        </a>
+        <a href="{% url 'kalendarz_najmow' %}" class="button-4">
+            <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
+        </a>
+        <a href="{% url 'lista_oplat' %}" class="button-5">
+            <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
+        </a>
+        <a href="{% url 'raporty' %}" class="button-6">
+            <button><i class="fas fa-file-alt"></i> Raporty</button>
+        </a>
+        <a href="{% url 'ustawienia' %}" class="button-7">
+            <button><i class="fas fa-cogs"></i> Ustawienia</button>
+        </a>
+        <a href="/users/login/" class="button-8">
+            <button><i class="fas fa-sign-out-alt"></i> Wyloguj się</button>
+        </a>
+    </div>
 
-<div class="topnav">
+<div class="topnav topnav-{{theme}}">
             <form method="get">
             {{ adres_search_filter.form.adres }} 
             <button>Search</button>
@@ -41,25 +43,24 @@
     {% endfor %}
 </div>
         </div>
-<div class="content">
+
     <div class="sort-filtr">
-    
-        <i class="fas fa-sort"> {{ sort_filter.form.ordering.label }}</i>
-    <form method="get">
-    <select id="sort-options">
-        {% for value, label in sort_filter.form.fields.ordering.choices %}
-            <option value="{{ value }}">{{ label }}</option>
-        {% endfor %}
-    </select>
-</form>
+        <form method="get">
+            <span class="sort-label">
+                <i class="fas fa-sort"> Sortowanie</i>
+                <div id="sort-options" class="sort-options">
+                    {{ sort_filter.form.as_p }}
+                <button id="sort-button" type="submit">sortuj</button>
+                </div>
+            </span>
+        </form>
     </div>
 
-
-
-       
-        <div class="filtr" >
-            
-            <i class="fas fa-filter" style="margin-right: 10%;"> Filtruj</i>  
+    
+    
+    
+        <div class="filtr">
+            <i class="fas fa-filter">Filtruj</i>  
     <form method="get" class="filter-options">  
         {{ nieruchomosci_filter.form.as_p }} 
         <button type="submit">Filtruj</button>
@@ -67,32 +68,80 @@
     </form>
      
 </div>
-</div>
 
 
 <div class="container">
-</div>
-        <div class="nieruchomosci-lista">
-            {% for nieruchomosc in nieruchomosci %}
+
+
+<div class="nieruchomosci-lista">
+    {% for nieruchomosc in nieruchomosci %}
+        <div class="nieruchomosc-container">
+            <a href="{% url 'nieruchomosc_szczegoly' nieruchomosc.ID_nieruchomosci %}" class="nieruchomosc-link">
                 <div class="nieruchomosc">
-                    {% if nieruchomosc.zdjecie_set.all %}
-                        {% with zdjecie=nieruchomosc.zdjecie_set.first %}
-                            <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}">
-                        {% endwith %}
-                    {% else %}
-                    {% endif %}
                     <div class="nieruchomosc-info">
-                        <h3>{{ nieruchomosc.Typ_nieruchomosci }}</h3>
-                        <p>Status: {{ nieruchomosc.Status }}</p>
-                        <p>{{ nieruchomosc.ID_adresu }}</p>
-                        <p>Cena: {{ nieruchomosc.Cena }} PLN</p>
-                        <p>Powierzchnia: {{ nieruchomosc.Powierzchnia }} m2</p>
-                        <p>Liczba pokoi: {{ nieruchomosc.Liczba_pokoi }}</p>
-                        <button><a href="nieruchomosci/{{ nieruchomosc.ID_nieruchomosci }}/edytuj/">Edytuj</a></button>
-                        <!-- ... inne dane ... -->
+                        <h3><i class="fas fa-home"></i> {{ nieruchomosc.Typ_nieruchomosci }}</h3>
+                        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> {{ nieruchomosc.Status }}</p>
+                        <hr>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> {{ nieruchomosc.ID_adresu }}</p>
+                        <hr>
+                        <p><i class="fas fa-dollar-sign"></i> <strong>Cena:</strong> {{ nieruchomosc.Cena }} PLN</p>
+                        <hr>
+                        <p><i class="fas fa-ruler-combined"></i> <strong>Powierzchnia:</strong> {{ nieruchomosc.Powierzchnia }} m²</p>
+                        <hr>
+                        <p><i class="fas fa-bed"></i> <strong>Liczba pokoi:</strong> {{ nieruchomosc.Liczba_pokoi }}</p>
+                        <hr>
+                {% if nieruchomosc.zdjecie_set.all %}
+                    {% with zdjecie=nieruchomosc.zdjecie_set.first %}
+                        <img src="{{ zdjecie.Obraz.url }}" alt="{{ nieruchomosc.Typ_nieruchomosci }}" class="nieruchomosc-zdjecie">
+                    {% endwith %}
+                {% endif %}
+           
+                {% if nieruchomosc.najemca_set.exists %}
+                    {% for najemca in nieruchomosc.najemca_set.all %}
+                        <p><i class="fas fa-user"></i> <strong>Najemca:</strong> {{ najemca.Imie }} {{ najemca.Nazwisko }}</p>
+                    {% endfor %}
+                {% endif %}
                     </div>
                 </div>
-            {% endfor %}
+            </a>
+            <a href="/nieruchomosci/{{ nieruchomosc.ID_nieruchomosci }}/edytuj/" class="edit-link">
+                <i class="fas fa-edit"></i> Edytuj
+            </a>
+            <form method="post" action="{% url 'usun_nieruchomosc' nieruchomosc.ID_nieruchomosci %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-delete">
+        <i class="fas fa-trash-alt"></i> Usuń
+    </button>
+</form>
         </div>
+    {% endfor %}
+</div>
+</div>
+<!-- Pop-up notification -->
+<div id="delete-success-popup" class="popup-notification" style="display: none;">
+    Nieruchomość została pomyślnie usunięta.
+</div>
+
+<script>
+    function confirmDelete(event) {
+        if (!confirm("Czy na pewno chcesz usunąć tę nieruchomość?")) {
+            event.preventDefault();
+        }
+    }
+
+    // Function to show the pop-up notification
+    function showDeleteSuccessPopup() {
+        const popup = document.getElementById('delete-success-popup');
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 3000); // Hide after 3 seconds
+    }
+
+    // Check for a success indicator in the URL
+    if (window.location.search.includes('deleted=true')) {
+        showDeleteSuccessPopup();
+    }
+</script>
 </body>
 </html>

@@ -13,75 +13,54 @@
 </head>
 <body class="{{ theme }} {{ font_size }}-font">
 
-<div class="sidebar">
-    <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
-        <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
-    </a>
-    <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
-        <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
-    </a>
-    <a href="{% url 'lista_najemcow' %}" class="button-3">
-        <button><i class="fas fa-users"></i> Najemcy</button>
-    </a>
-    <a href="{% url 'kalendarz_najmow' %}" class="button-4">
-        <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
-    </a>
-    <a href="{% url 'lista_oplat' %}" class="button-5">
-        <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
-    </a>
-    <a href="{% url 'raporty' %}" class="button-6">
-        <button><i class="fas fa-file-alt"></i> Raporty</button>
-    </a>
-    <a href="{% url 'ustawienia' %}" class="button-7">
-        <button><i class="fas fa-cogs"></i> Ustawienia</button>
-    </a>
-</div>
+    <div class="sidebar sidebar-{{ theme }}">
+        <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
+            <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
+        </a>
+        <a href="{% url 'dodaj_nieruchomosc' %}" class="button-2">
+            <button><i class="fas fa-plus"></i> Dodaj nieruchomość</button>
+        </a>
+        <a href="{% url 'lista_najemcow' %}" class="button-3">
+            <button><i class="fas fa-users"></i> Najemcy</button>
+        </a>
+        <a href="{% url 'kalendarz_najmow' %}" class="button-4">
+            <button><i class="fas fa-calendar-alt"></i> Kalendarz najmów</button>
+        </a>
+        <a href="{% url 'lista_oplat' %}" class="button-5">
+            <button><i class="fas fa-money-bill-wave"></i> Opłaty</button>
+        </a>
+        <a href="{% url 'raporty' %}" class="button-6">
+            <button><i class="fas fa-file-alt"></i> Raporty</button>
+        </a>
+        <a href="{% url 'ustawienia' %}" class="button-7">
+            <button><i class="fas fa-cogs"></i> Ustawienia</button>
+        </a>
+        <a href="/users/login/" class="button-8">
+            <button><i class="fas fa-sign-out-alt"></i> Wyloguj się</button>
+        </a>
+    </div>
 
-<style>
-    .fc-daygrid-day-number, .fc-col-header-cell, .fc-daygrid-day-top {
-        color: white; /* Biały kolor tekstu dla numerów dni i nagłówków */
-    }
-    #calendar {
-        max-width: 900px;
-        margin: 40px auto; /* Centruje kalendarz na stronie */
-    }
-    .fc-header-toolbar {
-        color: white; /* Biały kolor tekstu dla narzędzi kalendarza */
-    }
-    body {
-        background-color: #151a21; /* Ciemniejsze tło dla lepszej czytelności białych liter */
-    }
-    .fc-event {
-    margin-bottom: 5px; /* Dodaje odstęp między wydarzeniami */
-    padding: 2px 5px; /* Dostosowuje wypełnienie wewnątrz wydarzenia */
-    font-size: 12px;
-    white-space: normal;
-    }
+    <div id="calendar"></div>
 
-</style>
-
-<div id='calendar'>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var apiUrl = "{% url 'api-najmy' %}";
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                locale: 'pl', // Ustawia kalendarz na język polski
-                initialView: 'dayGridMonth', // Wyświetla kalendarz w widoku miesięcznym.
+                locale: 'pl', // Set calendar language to Polish
+                initialView: 'dayGridMonth', // Show calendar in monthly view
                 events: function(fetchInfo, successCallback, failureCallback) {
-                    fetch(apiUrl) // Użyj URL widoku Django
+                    fetch(apiUrl) // Use Django view URL
                         .then(response => response.json())
                         .then(data => successCallback(data))
                         .catch(error => failureCallback(error));
                 },
                 buttonText: {
-                    today: 'Obecny Miesiąc' // Zmiana etykiety przycisku "today" na "Obecny Miesiąc"
+                    today: 'Obecny Miesiąc' // Change the "today" button label to "Obecny Miesiąc"
                 }
             });
             calendar.render();
         });
     </script>
-</div>
-
 </body>
 </html>
