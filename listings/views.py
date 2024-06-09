@@ -15,13 +15,15 @@ def lista_nieruchomosci(request):
     nieruchomosci = sort_filter.qs.select_related('ID_adresu').prefetch_related('najemca_set')
 
     theme = request.session.get('theme', 'light')  # Pobiera motyw z sesji; domyślnie 'light'
+    font_size = request.session.get('font_size', 'medium')
 
     kontekst = {
         'nieruchomosci': nieruchomosci,
         'nieruchomosci_filter': nieruchomosci_filter,
         'adres_search_filter': adres_search_filter,
         'sort_filter': sort_filter,
-        'theme': theme  # Dodaj motyw do kontekstu
+        'theme': theme,
+        'font_size': font_size
     }
     return render(request, 'lista_nieruchomosci.html', kontekst)
 
@@ -29,12 +31,14 @@ def lista_nieruchomosci(request):
 
 
 def edytuj_nieruchomosc(request, nieruchomosc_ID):
+    theme = request.session.get('theme', 'dark')
+    font_size = request.session.get('font_size', 'medium')
     nieruchomosc = Nieruchomosc.objects.filter(ID_nieruchomosci=nieruchomosc_ID)
     print(request, nieruchomosc_ID)
-    return render(request, 'edytuj_nieruchomosc.html', {'nieruchomosc': nieruchomosc[0]})
+    return render(request, 'edytuj_nieruchomosc.html', {'nieruchomosc': nieruchomosc[0], 'font_size': font_size, 'theme': theme})
 
 def dodaj_nieruchomosc(request):
-    theme = request.session.get('theme', 'light')
+    theme = request.session.get('theme', 'dark')
     font_size = request.session.get('font_size', 'medium')
     if request.method == 'POST':
         form = NieruchomoscForm(request.POST)
@@ -43,10 +47,10 @@ def dodaj_nieruchomosc(request):
             return redirect('lista_nieruchomosci')
     else:
         form = NieruchomoscForm()
-    return render(request, 'dodaj_nieruchomosc.html', {'form': form, 'theme': theme, 'theme': theme})
+    return render(request, 'dodaj_nieruchomosc.html', {'form': form, 'font_size': font_size, 'theme': theme})
 
 def lista_najemcow(request):
-    theme = request.session.get('theme', 'light')
+    theme = request.session.get('theme', 'dark')
     font_size = request.session.get('font_size', 'medium')
     najemcy = Najemca.objects.all()
     context = {
@@ -54,7 +58,7 @@ def lista_najemcow(request):
         'theme': theme,
         'font_size': font_size,
     }
-    return render(request, 'lista_najemcow.html', context)
+    return render(request, 'lista_najemcow.html', context,)
 
 def edytuj_najemce(request, najemca_id):
     najemca = get_object_or_404(Najemca, pk=najemca_id)
@@ -89,7 +93,7 @@ def ustawienia(request):
         request.session['font_size'] = request.POST.get('font_size', 'medium')
         return redirect('ustawienia')
 
-    theme = request.session.get('theme', 'light')
+    theme = request.session.get('theme', 'dark')
     font_size = request.session.get('font_size', 'medium')
     return render(request, 'ustawienia.html', {'theme': theme, 'font_size': font_size})
 

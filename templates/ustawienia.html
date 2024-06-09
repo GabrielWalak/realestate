@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="{{ theme }} {{ font_size }}-font">
-    <div class="sidebar">
+    <div class="sidebar sidebar-{{ theme }}">
         <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
             <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
         </a>
@@ -29,6 +29,9 @@
         </a>
         <a href="{% url 'ustawienia' %}" class="button-7">
             <button><i class="fas fa-cogs"></i> Ustawienia</button>
+        </a>
+        <a href="/users/login/" class="button-8">
+            <button><i class="fas fa-sign-out-alt"></i> Wyloguj się</button>
         </a>
     </div>
 
@@ -61,12 +64,13 @@
             <div class="form-container">
                 <h2>Pomoc i Kontakt</h2>
                 <p><strong>Aktualna wersja aplikacji:</strong> 1.0.0</p>
-                <p><strong>Zasady korzystania z aplikacji:</strong> jdjdjdjddjdjdjdjdjd</p>
-                <p><strong>Polityka prywatności:</strong> gorbert nierczaak</p>
-                <p><strong>Kontakt:</strong> Masz problemy lub pytania? Wyślij email na <a href="mailto:support@example.com">support@example.com</a></p>
-                <p><strong>FAQ:</strong> jd.</p>
+                <p><strong>Zasady korzystania z aplikacji:</strong> Przed rozpoczęciem korzystania z aplikacji, prosimy o zapoznanie się z naszym regulaminem, który znajdziesz <a href="/terms-of-service">tutaj</a>.</p>
+                <p><strong>Polityka prywatności:</strong> Twoja prywatność jest dla nas bardzo ważna. Przeczytaj naszą <a href="/privacy-policy">politykę prywatności</a>, aby dowiedzieć się więcej o tym, jak przetwarzamy Twoje dane.</p>
+                <p><strong>Kontakt:</strong> Masz problemy lub pytania? Wyślij email na <a href="mailto:support@example.com">support@example.com</a> lub zadzwoń do nas na numer +48 123 456 789.</p>
+                <p><strong>FAQ:</strong> Często zadawane pytania znajdziesz <a href="/faq">tutaj</a>. Możliwe, że Twoje pytanie zostało już odpowiedziane.</p>
             </div>
         </div>
+        
     </div>
 </body>
 </html>

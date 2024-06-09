@@ -6,10 +6,9 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   
 </head>
 <body class="{{ theme }} {{ font_size }}-font">
-    <div class="sidebar">
+    <div class="sidebar sidebar-{{ theme }}">
         <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
             <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
         </a>
@@ -30,6 +29,9 @@
         </a>
         <a href="{% url 'ustawienia' %}" class="button-7">
             <button><i class="fas fa-cogs"></i> Ustawienia</button>
+        </a>
+        <a href="/users/login/" class="button-8">
+            <button><i class="fas fa-sign-out-alt"></i> Wyloguj się</button>
         </a>
     </div>
     <div class="content">
@@ -56,4 +58,5 @@
             </form>
         </div>
     </div>
-    
+</body>
+</html>

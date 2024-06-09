@@ -126,11 +126,19 @@ body {
 }
 
 .sidebar {
-    background-color: #151a21;
     float: left;
     width: 15%;
     height: 100%;
     text-align: center;
+}
+
+
+.sidebar-dark {
+    background-color: #151a21;
+}
+
+.sidebar-light {
+    background-color: #fff; /* Example light theme color */
 }
 
 .sidebar a {
@@ -139,6 +147,8 @@ body {
     text-decoration: none;
     width: 100%;
 }
+
+
 
 .sidebar button i {
     vertical-align: middle;
@@ -189,13 +199,30 @@ body {
     box-sizing: border-box; /* Dodanie właściwości box-sizing */
 }
 
+.sidebar-dark button {
+    background-color: #151a21;
+}
+
+.sidebar-light button {
+    background-color: #fff;
+}
+
 
 .sidebar button:hover {
     background-color: #ddd;
 }
 .topnav {
     margin-bottom: 10px;
+}
+
+.topnav-dark {
+    margin-bottom: 10px;
     background-color: #151a21;
+}
+
+.topnav-light {
+    margin-bottom: 10px;
+    background-color: #fff;
 }
 .topnav input
 {
@@ -243,6 +270,116 @@ select#sort-options {
     transition: min-width 0.1s; /* Dodajemy efekt przejścia dla płynnego zmniejszania/zwiększania */
     font-size: 16px; /* Zwiększamy rozmiar czcionki */
 }
+
+/* style.css */
+
+/* Dark theme styles */
+body.dark {
+    background-color: #151a21;
+    color: white; /* Default text color */
+}
+
+body.dark .payment-tile {
+    background-color: #1d242f;
+    color: white; /* Text color inside payment tiles */
+}
+
+body.dark .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+body.dark .delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Light theme styles */
+body.light {
+    background-color: #f0f0f0;
+    color: black; /* Default text color */
+}
+
+body.light .payment-tile {
+    background-color: #5b7ba3;
+    color: black; /* Text color inside payment tiles */
+}
+
+body.light .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+body.light .delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* General styles */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.payment-tile {
+    width: 30%;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(244, 242, 242, 0.1);
+}
+
+.payment-tile h3, .payment-tile p {
+    color: inherit; /* Ensure text color inherits from parent */
+}
+
+.delete-button {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+/* style.css */
+
+/* Dark theme styles */
+body.dark {
+    background-color: #151a21;
+    color: white; /* Default text color */
+}
+
+body.dark .fc-daygrid-day-number,
+body.dark .fc-col-header-cell,
+body.dark .fc-daygrid-day-top,
+body.dark .fc-header-toolbar {
+    color: white; /* Calendar text color for dark theme */
+}
+
+/* Light theme styles */
+body.light {
+    background-color: #f0f0f0;
+    color: black; /* Default text color */
+}
+
+body.light .fc-daygrid-day-number,
+body.light .fc-col-header-cell,
+body.light .fc-daygrid-day-top,
+body.light .fc-header-toolbar {
+    color: black; /* Calendar text color for light theme */
+}
+
+/* General calendar styles */
+#calendar {
+    max-width: 900px;
+    margin: 40px auto; /* Center the calendar on the page */
+}
+
+.fc-event {
+    margin-bottom: 5px; /* Adds spacing between events */
+    padding: 2px 5px; /* Adjusts padding inside the event */
+    font-size: 12px;
+    white-space: normal;
+}
+
 
 
 #sort-options:hover {

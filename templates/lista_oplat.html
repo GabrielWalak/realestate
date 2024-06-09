@@ -9,7 +9,7 @@
 </head>
 <body class="{{ theme }} {{ font_size }}-font">
 
-    <div class="sidebar">
+    <div class="sidebar sidebar-{{ theme }}">
         <a href="{% url 'lista_nieruchomosci' %}" style="display: flex; align-items: center; justify-content: center; margin-top: 25px;">
             <button style="background: none; border: none;"><i class="fas fa-home" style="font-size: 60px;"></i></button>
         </a>
@@ -31,6 +31,9 @@
         <a href="{% url 'ustawienia' %}" class="button-7">
             <button><i class="fas fa-cogs"></i> Ustawienia</button>
         </a>
+        <a href="/users/login/" class="button-8">
+            <button><i class="fas fa-sign-out-alt"></i> Wyloguj się</button>
+        </a>
     </div>
 
     <div class="main-content">
@@ -46,40 +49,8 @@
         </div>
         {% endfor %}
     </div>
-    
-    <style>
-    .main-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 20px;
-    }
-    
-    .payment-tile {
-        width: 30%;
-        padding: 15px;
-        margin: 10px;
-        box-shadow: 0 2px 5px rgba(244, 242, 242, 0.1);
-        background-color: #1d242f;
-        color: white;
-    }
 
-    .payment-tile h3, .payment-tile p {
-        color: white; /*dodatkowe zapewnienie, że tekst jest biały */
-    }
 
-    .delete-button {
-        background-color: #e74c3c;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-    }
 
-    .delete-button:hover {
-        background-color: #c0392b;
-    }
-    </style>
-    
 </body>
 </html>
