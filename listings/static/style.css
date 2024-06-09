@@ -596,11 +596,11 @@ body.dark {
 
 
 /* Ogólny styl przycisku */
+
 .btn {
     float: right;
     display: inline-flex;
     align-items: center;
-    top:5px;
     margin-top: 5px;
     padding: 10px 20px;
     font-size: 14px;
