@@ -515,5 +515,40 @@ body.dark {
     white-space: nowrap; /* Prevent labels from wrapping */
 }
 
+/* Aktualizacja stylu CSS */
+
+/* Zaktualizowany styl dla kontenera nieruchomości */
+.najemca-container {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0px 20px 40px;
+    color: #333;
+    display: inline-block;
+
+}
+
+/* Zaktualizowany styl dla linku edycji */
+.edit-link {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styl dla kontenera najemcy po najechaniu */
+.najemca-container:hover {
+    border-color: green; /* Zmiana koloru obramowania po najechaniu myszką */
+}
+
 
 

@@ -4,53 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a660fa-54e0-41a8-a876-806baea1c882" name="Changes" comment="full">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="37a660fa-54e0-41a8-a876-806baea1c882" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/a505a3e6-8ca6-4d63-b71b-868bfc37dbe2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a505a3e6-8ca6-4d63-b71b-868bfc37dbe2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/realestate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/realestate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listings/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listings/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/listings/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listings/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listings/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/listings/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realestate/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/realestate/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realestate/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/realestate/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realestate/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/realestate/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/realestate/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/realestate/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dodaj_nieruchomosc.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dodaj_nieruchomosc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dodaj_zdjecie.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dodaj_zdjecie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/edytuj_nieruchomosc.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/edytuj_nieruchomosc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/kalendarz_najmow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/kalendarz_najmow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/lista_najemcow.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lista_najemcow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lista_nieruchomosci.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lista_nieruchomosci.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lista_oplat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lista_oplat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/raporty.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/raporty.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ustawienia.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ustawienia.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Maciekwoj&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/GabrielWalak/realestate.git&quot;,
+    &quot;accountId&quot;: &quot;50997d8e-fede-4930-8250-c7fdfa5f699a&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -60,24 +51,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.realestate.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "ehh",
-    "last_opened_file_path": "C:/Users/Gabriel/PycharmProjects/pythonProject6",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#1 on ehh&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/maciek/Documents/PyCharm/realestate/realestate&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="realestate" type="Python.DjangoServer" factoryName="Django server">
       <module name="realestate" />
@@ -86,7 +75,6 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="realestate.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -95,7 +83,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="localhost" />
+      <option name="host" value="" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
@@ -108,7 +96,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -122,21 +111,11 @@
       <updated>1714926615941</updated>
       <workItem from="1714926617413" duration="1640000" />
       <workItem from="1716125232470" duration="844000" />
-      <workItem from="1717660121988" duration="22000" />
-      <workItem from="1717660157777" duration="1225000" />
-      <workItem from="1717690139544" duration="240000" />
-      <workItem from="1717691874298" duration="893000" />
-      <workItem from="1717710754904" duration="120000" />
+      <workItem from="1716801252205" duration="188000" />
+      <workItem from="1716801446807" duration="645000" />
+      <workItem from="1717860344087" duration="481000" />
+      <workItem from="1717879197091" duration="4465000" />
     </task>
-    <task id="LOCAL-00001" summary="full">
-      <option name="closed" value="true" />
-      <created>1717710837329</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1717710837329</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,9 +131,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="full" />
-    <option name="LAST_COMMIT_MESSAGE" value="full" />
   </component>
 </project>

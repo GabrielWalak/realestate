@@ -46,10 +46,26 @@ def dodaj_nieruchomosc(request):
     return render(request, 'dodaj_nieruchomosc.html', {'form': form, 'theme': theme, 'theme': theme})
 
 def lista_najemcow(request):
-    theme = request.session.get('theme', 'dark')
+    theme = request.session.get('theme', 'light')
     font_size = request.session.get('font_size', 'medium')
-    najemcy = Najemca.objects.all().prefetch_related('ID_najemcy')
-    return render(request, 'lista_najemcow.html', {'najemcy': najemcy,'theme': theme,  'font_size': font_size})
+    najemcy = Najemca.objects.all()
+    context = {
+        'najemcy': najemcy,
+        'theme': theme,
+        'font_size': font_size,
+    }
+    return render(request, 'lista_najemcow.html', context)
+
+def edytuj_najemce(request, najemca_id):
+    najemca = get_object_or_404(Najemca, pk=najemca_id)
+    if request.method == "POST":
+        form = NajemcaForm(request.POST, instance=najemca)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_najemcow')
+    else:
+        form = NajemcaForm(instance=najemca)
+    return render(request, 'edytuj_najemce.html', {'form': form})
 
 def kalendarz_najmow(request):
     theme = request.session.get('theme', 'dark')
